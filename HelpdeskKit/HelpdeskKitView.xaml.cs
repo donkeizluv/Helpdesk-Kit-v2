@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace HelpdeskKit
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HelpdeskKitView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HelpdeskKitView : Window
     {
-        public MainWindow()
+        public HelpdeskKitView()
         {
             InitializeComponent();
         }
