@@ -7,12 +7,12 @@
 		xmlns:local="clr-namespace:HelpdeskKit"
 		xmlns:rules="clr-namespace:HelpdeskKit.Rules"
 		mc:Ignorable="d"
-		Height="350" Width="430"
+		Height="430" Width="430"
 		ResizeMode="NoResize"
 		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 		Background="{DynamicResource MaterialDesignPaper}"
 		TextElement.FontWeight="Medium"
-		TextElement.FontSize="14"
+		TextElement.FontSize="13.5"
         Title="Helpdesk Kit"
 		FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid>
@@ -29,9 +29,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="37*"/>
-            <RowDefinition Height="65*"/>
-            <RowDefinition Height="254*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="250*"/>
 
         </Grid.RowDefinitions>
         <materialDesign:Card Grid.Row="0" Grid.ColumnSpan="2" Margin="0,3,0,-2" VerticalAlignment="Stretch">
@@ -84,7 +84,7 @@
         
         <materialDesign:Card Grid.Row="2" Grid.Column="0" 
                              Margin="5" 
-                             Height="220"
+                             Height="285"
                              materialDesign:ShadowAssist.ShadowDepth="Depth1">
             <Grid Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -92,7 +92,7 @@
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1.3*"></RowDefinition>
+                    <RowDefinition Height="2.5*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40*"></ColumnDefinition>
@@ -104,7 +104,7 @@
                         <Setter Property="Foreground" Value="White"/>
                     </Style>
                     <Style TargetType="StackPanel" x:Key="AlignWithTextBox">
-                        <Setter Property="Margin" Value="0,5,0,0"/>
+                        <Setter Property="Margin" Value="0,8,0,0"/>
                         <Setter Property="Orientation" Value="Horizontal"/>
                         <Setter Property="HorizontalAlignment" Value="Right"/>
                     </Style>
@@ -133,20 +133,33 @@
                     <materialDesign:PackIcon  Kind="Home" Style="{StaticResource AlignWithTextBlock}"  />
                     <TextBlock>Batch:</TextBlock>
                 </StackPanel>
+                <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
+                    <materialDesign:PackIcon  Kind="NoteText" Style="{StaticResource AlignWithTextBlock}"  />
+                    <TextBlock>Desc:</TextBlock>
+                </StackPanel>
 
-                
-                
+
                 <TextBox x:Name="TextBoxUsername" Grid.Row="0" Grid.Column="1" IsReadOnly="True">luu.nhat-hong</TextBox>
                 <TextBox x:Name="TextBoxLock" Grid.Row="1" Grid.Column="1" IsReadOnly="True">Unlock</TextBox>
                 <TextBox x:Name="TextBoxExpire" Grid.Row="2" Grid.Column="1" IsReadOnly="True">04/04/2017</TextBox>
                 <TextBox x:Name="TextBoxBatch" Grid.Row="3" Grid.Column="1" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="TextBoxDesc" Grid.Row="4" Grid.Column="1" 
+                         IsReadOnly="True"
+                         TextWrapping="Wrap"
+                         MaxHeight="90"
+                         Height="90"
+                         MaxWidth="120"
+                         VerticalScrollBarVisibility="Auto"
+                         AcceptsReturn="True"
+                         TextAlignment="Justify"
+                         VerticalAlignment="Top">Information Technology - Network, Infratructure</TextBox>
 
            
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card Grid.Row="2" Grid.Column="1" 
                              Margin="5" 
-                             Height="220"
+                             Height="285"
                              materialDesign:ShadowAssist.ShadowDepth="Depth1">
             <StackPanel Orientation="Vertical">
                 <StackPanel.Resources>
