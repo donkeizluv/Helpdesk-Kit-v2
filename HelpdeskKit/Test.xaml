@@ -13,11 +13,7 @@
 		TextElement.FontSize="14"
 		Title="Test"
 		FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-	<Canvas>
-        <TextBox TextWrapping="Wrap"
-                 MaxWidth="90"
-                 AcceptsReturn="True"                 
-                 VerticalScrollBarVisibility="Auto"
-                 MaxHeight="70">Service Instructor ED3REOGJEROIGIORGNIORJGOPERJGERJIOGJRIOJGOJROI295895 e</TextBox>
-    </Canvas>
+    <Grid>
+        
+    </Grid>
 </Window>

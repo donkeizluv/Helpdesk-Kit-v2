@@ -7,11 +7,11 @@
 		xmlns:local="clr-namespace:HelpdeskKit"
 		xmlns:rules="clr-namespace:HelpdeskKit.Rules"
 		mc:Ignorable="d"
-		Height="430" Width="430"
+		Height="425" Width="430"
 		ResizeMode="NoResize"
 		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 		Background="{DynamicResource MaterialDesignPaper}"
-		TextElement.FontWeight="Medium"
+		TextElement.FontWeight="Normal"
 		TextElement.FontSize="13.5"
         Title="Helpdesk Kit"
 		FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
@@ -29,11 +29,12 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="35*"/>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="250*"/>
 
         </Grid.RowDefinitions>
+        <!--status bar-->
         <materialDesign:Card Grid.Row="0" Grid.ColumnSpan="2" Margin="0,3,0,-2" VerticalAlignment="Stretch">
 
         </materialDesign:Card>
@@ -48,10 +49,8 @@
                     <Setter Property="Foreground" Value="{Binding ElementName=NameTextBox, Path=BorderBrush}"/>
                     <Style.Triggers>
                         <!--sync textbox borderbrush when it got active -->
- 
                         <DataTrigger Binding="{Binding IsSelectionActive, ElementName=NameTextBox}" Value="True">
-                            <!--dirty hack for hardcoded color -->
-                            <Setter Property="Foreground" Value="#FF9800"/>
+                            <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -151,8 +150,8 @@
                          MaxWidth="120"
                          VerticalScrollBarVisibility="Auto"
                          AcceptsReturn="True"
-                         TextAlignment="Justify"
-                         VerticalAlignment="Top">Information Technology - Network, Infratructure</TextBox>
+                         TextAlignment="Left"
+                         VerticalAlignment="Top">Information Technology - Network</TextBox>
 
            
             </Grid>
