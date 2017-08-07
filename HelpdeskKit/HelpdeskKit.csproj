@@ -70,8 +70,15 @@
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HelpdeskKitViewModel.cs" />
+    <Compile Include="Views\Controls\AutomationPageControl.xaml.cs">
+      <DependentUpon>AutomationPageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MenuItem.cs" />
     <Page Include="Views\Controls\GeneralPageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AutomationPageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

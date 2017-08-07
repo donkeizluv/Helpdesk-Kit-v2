@@ -66,7 +66,7 @@
 
         <materialDesign:Card x:Name="CardUserStats" Grid.Row="1" Grid.Column="0" 
                              Margin="5" 
-                             Height="280"
+                             Height="275"
                              materialDesign:ShadowAssist.ShadowDepth="Depth1">
             <Grid Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Grid.RowDefinitions>

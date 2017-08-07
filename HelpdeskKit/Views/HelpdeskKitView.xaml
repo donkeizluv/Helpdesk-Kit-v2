@@ -5,9 +5,8 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:HelpdeskKit.Views"
-		xmlns:rules="clr-namespace:HelpdeskKit.Rules"
 		mc:Ignorable="d"
-		Height="420" Width="430"
+		Height="410" Width="430"
 		ResizeMode="NoResize"
 		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 		Background="{DynamicResource MaterialDesignPaper}"
@@ -24,13 +23,14 @@
                                     DockPanel.Dock="Top"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Top"
-                                    Margin="5"
+                                    Margin="3"
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
                     <ListBox x:Name="MenuItemListBox" 
                              Margin="0 16 0 16" 
                              SelectedIndex="0"                         
                              ItemsSource="{Binding MenuItems}"
-                             HorizontalAlignment="Center">
+                             HorizontalAlignment="Center"
+                             PreviewMouseLeftButtonUp="MenuItemListBox_PreviewMouseLeftButtonUp">
                         <!--PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp"-->
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="local:MenuItem">
@@ -41,14 +41,14 @@
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <Grid>
-                <Grid.Resources>
-                    <Style TargetType="{x:Type ToggleButton}">
+                <!--<Grid.Resources>
+                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
                         <Setter Property="Width" Value="15"/>
                         <Setter Property="Height" Value="15"/>
                     </Style>
-                </Grid.Resources>
+                </Grid.Resources>-->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="25*"/>
                     <RowDefinition Height="245*"/>
                 </Grid.RowDefinitions>
                 <!--status bar-->

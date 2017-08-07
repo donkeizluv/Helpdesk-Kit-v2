@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="HelpdeskKit.Views.Controls.AutomationPageControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HelpdeskKit.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="430">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="10,5,0,0"/>
+            </Style>
+            <!--<Style TargetType="{x:Type materialDesign:PackIcon}">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryHueDarkBrush}"/>
+            </Style>-->
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Column="0"
+                  Style="{DynamicResource MaterialDesignGroupBox}" 
+                  Margin="5"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth2" 
+                  BorderThickness="0"
+                  Padding="0"
+                  VerticalContentAlignment="Top">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Keyboard" Margin="0,10,0,0" Foreground="Black"/>
+                    <TextBlock Text="Hotkey" Foreground="Black"/>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Text="Enable"/>
+                <ToggleButton Grid.Column="1"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Style="{DynamicResource MaterialDesignGroupBox}" 
+                  Margin="5"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth2" 
+                  BorderThickness="0"
+                  Padding="0"
+                  VerticalContentAlignment="Top">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Email" Margin="0,10,0,0" Foreground="Black"/>
+                    <TextBlock Text="Outlook" Foreground="Black"/>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Interop Outlook" Grid.Row="0" Grid.Column="0"/>
+                <ToggleButton Grid.Column="1" Grid.Row="0"/>
+                <TextBlock Text="Compose reply" Grid.Row="1" Grid.Column="0"/>
+                <ToggleButton Grid.Column="1" Grid.Row="1"/>
+                <TextBlock Text="Send reply" Grid.Row="2" Grid.Column="0"/>
+                <ToggleButton Grid.Column="1" Grid.Row="3"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

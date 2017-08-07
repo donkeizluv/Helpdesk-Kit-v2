@@ -17,7 +17,8 @@ namespace HelpdeskKit.Views.ViewModels
         {
             MenuItems = new MenuItem[]
             {
-                new MenuItem("Account", new GeneralPageControl())
+                new MenuItem("Account", new GeneralPageControl()),
+                new MenuItem("Automation", new AutomationPageControl())
             };
         }
     }

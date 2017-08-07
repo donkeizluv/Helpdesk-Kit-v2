@@ -26,9 +26,14 @@ namespace HelpdeskKit
         public HelpdeskKitViewModel ViewModel { get; private set; } = new HelpdeskKitViewModel();
         public HelpdeskKitView()
         {
-            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline), new FrameworkPropertyMetadata { DefaultValue = 45 });
+            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline), new FrameworkPropertyMetadata { DefaultValue = 56 });
             InitializeComponent();
             this.DataContext = ViewModel;
+        }
+
+        private void MenuItemListBox_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MenuToggleButton.IsChecked = false;
         }
     }
 }
