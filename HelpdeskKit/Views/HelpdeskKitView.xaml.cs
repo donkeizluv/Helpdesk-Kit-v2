@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HelpdeskKit.Views;
+using HelpdeskKit.Views.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +23,12 @@ namespace HelpdeskKit
     /// </summary>
     public partial class HelpdeskKitView : Window
     {
+        public HelpdeskKitViewModel ViewModel { get; private set; } = new HelpdeskKitViewModel();
         public HelpdeskKitView()
         {
             Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline), new FrameworkPropertyMetadata { DefaultValue = 45 });
             InitializeComponent();
+            this.DataContext = ViewModel;
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using HelpdeskKit.Views.Controls;
+namespace HelpdeskKit.Views.ViewModels
+{
+    public class HelpdeskKitViewModel
+    {
+        public MenuItem[] MenuItems { get; set; }
+        public HelpdeskKitViewModel()
+        {
+            InitItems();
+        }
+        private void InitItems()
+        {
+            MenuItems = new MenuItem[]
+            {
+                new MenuItem("Account", new GeneralPageControl())
+            };
+        }
+    }
+}
