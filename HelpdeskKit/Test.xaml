@@ -12,8 +12,50 @@
 		TextElement.FontWeight="Medium"
 		TextElement.FontSize="14"
 		Title="Test"
-		FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-    <Grid>
         
-    </Grid>
+		FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+    <materialDesign:DialogHost>
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="150">
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                    DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" Margin="16"
+                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"/>
+                    <ListBox x:Name="LeftDrawerListBox" DockPanel.Dock="Bottom">
+                        <ListBoxItem>item 1</ListBoxItem>
+                        <ListBoxItem>item 2</ListBoxItem>
+                        <ListBoxItem>item 31</ListBoxItem>
+                        <ListBoxItem>item 4</ListBoxItem>
+                        <ListBoxItem>item 5</ListBoxItem>
+                        <ListBoxItem>item 6</ListBoxItem>
+                        <ListBoxItem>item 7</ListBoxItem>
+                    </ListBox>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <materialDesign:ColorZone 
+                    Padding="10" 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                    Mode="PrimaryMid" 
+                    DockPanel.Dock="Top">
+                    <DockPanel>
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                      IsChecked="False"
+                                        x:Name="MenuToggleButton"
+                                      DockPanel.Dock="Left"/>
+                        <Button Width="120" DockPanel.Dock="Right"></Button>
+                    </DockPanel>
+
+                    
+
+                </materialDesign:ColorZone>
+
+                <TextBlock DockPanel.Dock="Bottom" Grid.Row="1" Text="{Binding ElementName=LeftDrawerListBox, Path=SelectedValue}"/>
+            </DockPanel>
+            
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
+    
+   
 </Window>
