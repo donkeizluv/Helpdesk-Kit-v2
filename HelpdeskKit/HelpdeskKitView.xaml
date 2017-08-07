@@ -35,13 +35,35 @@
 
         </Grid.RowDefinitions>
         <!--status bar-->
-        <materialDesign:Card
-                materialDesign:ShadowAssist.ShadowDepth="Depth2" 
+        <materialDesign:ColorZone
+                materialDesign:ShadowAssist.ShadowDepth="Depth1" 
                 Grid.Row="0" Grid.ColumnSpan="2" 
-                Margin="0,3,0,-2" 
-                VerticalAlignment="Stretch">
-
-        </materialDesign:Card>
+                VerticalAlignment="Stretch"
+                Background="{StaticResource PrimaryHueMidBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                Grid.Column="0"
+                                IsChecked="False"
+                                x:Name="MenuToggleButton"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Padding="0"
+                                Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"/>
+                <TextBlock Text="Binding"
+                           x:Name="ContentTitle"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"  
+                           HorizontalAlignment="Center"
+                           FontSize="18" 
+                           FontWeight="Medium"
+                           Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"/>
+            </Grid>
+        </materialDesign:ColorZone>
         <StackPanel Orientation="Horizontal" 
                     Grid.Row="1"
                     Grid.ColumnSpan="999" 
