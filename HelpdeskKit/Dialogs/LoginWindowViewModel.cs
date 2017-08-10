@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace HelpdeskKit.Dialogs
 {
-    class LoginWindowViewModel
+    public class LoginWindowViewModel
     {
+        public LoginWindowViewModel()
+        {
+            
+        }
     }
 }
