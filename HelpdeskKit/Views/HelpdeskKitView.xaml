@@ -79,6 +79,7 @@
                                Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"/>
                     </Grid>
                 </materialDesign:ColorZone>
+                <!--content here!-->
                 <ContentControl Grid.Row="1" Content="{Binding ElementName=MenuItemListBox, Path=SelectedItem.Content}"/>
             </Grid> 
         </materialDesign:DrawerHost>
