@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HelpdeskKit.Views.Controls
+namespace HelpdeskKit.Dialogs
 {
     /// <summary>
-    /// Interaction logic for General.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class GeneralPageControl : UserControl
+    public partial class LoginWindow : Window
     {
-        public GeneralPageControl()
+        public LoginWindow()
         {
             InitializeComponent();
         }

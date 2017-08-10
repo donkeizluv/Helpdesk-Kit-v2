@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HelpdeskKit.Views.Controls;
+using HelpdeskKit.Views.ContentControls;
+
 namespace HelpdeskKit.Views.ViewModels
 {
     public class HelpdeskKitViewModel
