@@ -11,11 +11,31 @@ using HelpdeskKit.Annotations;
 using HelpdeskKit.Dialogs;
 using HelpdeskKit.Views.ContentControls;
 using HelpdeskKit.Views;
+using HelpdeskKit.Models;
 
 namespace HelpdeskKit.ViewModels
 {
     public partial class HelpdeskKitViewModel : INotifyPropertyChanged
     {
+        private DirectoryEntry _entry;
+        public DirectoryEntry CurrentEntry
+        {
+            get { return _entry; }
+            set { _entry = value; }
+        }
+
+
+        private AdUser _user;
+        public AdUser CurrentUser
+        {
+            get { return _user; }
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(CurrentUser));
+            }
+        }
+
         public object CurrentDialogContent
         {
             get => _dialogContent;
@@ -41,7 +61,6 @@ namespace HelpdeskKit.ViewModels
         public MenuItem[] MenuItems { get; set; }
 
         private AdController _controller;
-        private DirectoryEntry _currentEntry;
         private object _dialogContent;
         private bool _authenticated = false;
 

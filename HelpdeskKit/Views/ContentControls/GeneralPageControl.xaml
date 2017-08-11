@@ -123,10 +123,10 @@
                 </StackPanel>
 
 
-                <TextBox x:Name="TextBoxUsername" Grid.Row="0" Grid.Column="1" IsReadOnly="True">test user</TextBox>
-                <TextBox x:Name="TextBoxLock" Grid.Row="1" Grid.Column="1" IsReadOnly="True">Unlocked</TextBox>
-                <TextBox x:Name="TextBoxExpire" Grid.Row="2" Grid.Column="1" IsReadOnly="True">04/04/2017</TextBox>
-                <TextBox x:Name="TextBoxBatch" Grid.Row="3" Grid.Column="1" IsReadOnly="True">Yo!</TextBox>
+                <TextBox x:Name="TextBoxUsername" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Text="{Binding CurrentUser.Ad}"/>
+                <TextBox x:Name="TextBoxLock" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Text="{Binding CurrentUser.Lock}"/>
+                <TextBox x:Name="TextBoxExpire" Grid.Row="2" Grid.Column="1" IsReadOnly="True" Text="{Binding CurrentUser.ExpireDate}"/>
+                <TextBox x:Name="TextBoxBatch" Grid.Row="3" Grid.Column="1" IsReadOnly="True" Text="{Binding CurrentUser.Batch}"/>
                 <TextBox x:Name="TextBoxDesc" Grid.Row="4" Grid.Column="1"
                          IsReadOnly="True"
                          TextWrapping="Wrap"
@@ -136,9 +136,8 @@
                          VerticalScrollBarVisibility="Auto"
                          AcceptsReturn="True"
                          TextAlignment="Left"
-                         VerticalAlignment="Top">
-                    Information Technology - Network
-                </TextBox>
+                         VerticalAlignment="Top" 
+                         Text="{Binding CurrentUser.Description}"/>
 
 
             </Grid>

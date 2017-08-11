@@ -87,6 +87,7 @@
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="ViewModels\HelpdeskKitViewModel_Operation.cs" />
     <Compile Include="Views\Converters.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel_Login.cs" />

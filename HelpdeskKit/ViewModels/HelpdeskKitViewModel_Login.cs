@@ -41,6 +41,17 @@ namespace HelpdeskKit.ViewModels
         }
         private string _loginStatusMessage;
 
+        private bool _isLoggingIn = false;
+        public bool IsLoggingIn
+        {
+            get => _isLoggingIn;
+            set
+            {
+                _isLoggingIn = value;
+                OnPropertyChanged(nameof(IsLoggingIn));
+            }
+        }
+
         public string LoginStatusMessage
         {
             get => _loginStatusMessage;
@@ -53,17 +64,37 @@ namespace HelpdeskKit.ViewModels
 
         public bool CanExecuteLogin => Username.Length > 0 && Password.Length > 0;
 
-        private void LoginMethod()
+        private async void LoginMethod()
+        {
+            if (IsLoggingIn || Authenticated) return;
+            try
+            {
+                IsLoggingIn = true;
+                LoginStatusMessage = string.Empty;
+                if (await Task.Run(new Func<bool>(_login)).ConfigureAwait(false))
+                {
+                    Authenticated = true;
+                    return;
+                }
+                LoginStatusMessage = "Login failed.";
+            }
+            finally
+            {
+                IsLoggingIn = false;
+            }
+        }
+        private bool _login()
         {
             try
             {
                 _controller = new AdController(Username, Password);
-                Authenticated = true;
+                return true;
             }
             catch (Exception e)
             {
-                LoginStatusMessage = "Login failed.";
+                return false;
             }
+
         }
     }
 }
