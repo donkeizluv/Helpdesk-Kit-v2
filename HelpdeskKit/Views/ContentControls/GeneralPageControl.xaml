@@ -2,58 +2,59 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="430">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="350" d:DesignWidth="430"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Margin" Value="10,10,10,10"/>
+                <Setter Property="Margin" Value="10,10,10,10" />
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="350*"/>
-            <ColumnDefinition Width="180*"/>
+            <ColumnDefinition Width="350*" />
+            <ColumnDefinition Width="180*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="245*"/>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="245*" />
 
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" 
+        <StackPanel Orientation="Horizontal"
                     Grid.Row="0"
-                    Grid.ColumnSpan="999" 
-                    HorizontalAlignment="Center" 
+                    Grid.ColumnSpan="999"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <StackPanel.Resources>
                 <Style TargetType="materialDesign:PackIcon" x:Key="SyncBorder">
                     <!--sync textbox borderbrush when it got mouse over -->
-                    <Setter Property="Foreground" Value="{Binding ElementName=NameTextBox, Path=BorderBrush}"/>
+                    <Setter Property="Foreground" Value="{Binding ElementName=NameTextBox, Path=BorderBrush}" />
                     <Style.Triggers>
                         <!--sync textbox borderbrush when it got active -->
                         <DataTrigger Binding="{Binding IsSelectionActive, ElementName=NameTextBox}" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </StackPanel.Resources>
             <TextBox
-					Width="120"
-					Height="40"
-					x:Name="NameTextBox"
-					materialDesign:HintAssist.Hint="Search"
-					materialDesign:HintAssist.HintOpacity="0.2"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-            </TextBox>
-            <Button Name="SearchButton" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" 
-                    Background="{x:Null}" 
-                    BorderBrush="{x:Null}" 
-                    Width="20" Height="20" 
+                Width="120"
+                Height="40"
+                x:Name="NameTextBox"
+                materialDesign:HintAssist.Hint="Search"
+                materialDesign:HintAssist.HintOpacity="0.2"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Width="20" Height="20"
                     Margin="0,15,0,0" Padding="0"
                     materialDesign:RippleAssist.IsCentered="True"
                     materialDesign:RippleAssist.Feedback="#FFCC80">
-                <materialDesign:PackIcon Style="{StaticResource SyncBorder}" Kind="Magnify" Width="20" Height="20" Margin="0" />
+                <materialDesign:PackIcon Style="{StaticResource SyncBorder}" Kind="Magnify" Width="20" Height="20"
+                                         Margin="0" />
             </Button>
 
             <RadioButton IsChecked="True" GroupName="SearchType" Width="50" Height="25" Margin="25,20,0,0">
@@ -64,38 +65,39 @@
             </RadioButton>
         </StackPanel>
 
-        <materialDesign:Card x:Name="CardUserStats" Grid.Row="1" Grid.Column="0" 
-                             Margin="5" 
+        <materialDesign:Card x:Name="CardUserStats" Grid.Row="1" Grid.Column="0"
+                             Margin="5"
                              Height="275"
                              materialDesign:ShadowAssist.ShadowDepth="Depth1">
-            <Grid Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <Grid Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2.5*"></RowDefinition>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2.5*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"></ColumnDefinition>
-                    <ColumnDefinition Width="50*"></ColumnDefinition>
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
                 <Grid.Resources>
                     <Style TargetType="materialDesign:PackIcon" x:Key="AlignWithTextBlock">
-                        <Setter Property="Margin" Value="0,9,0,0"/>
-                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Margin" Value="0,9,0,0" />
+                        <Setter Property="Foreground" Value="White" />
                     </Style>
                     <Style TargetType="StackPanel" x:Key="AlignWithTextBox">
-                        <Setter Property="Margin" Value="0,8,0,0"/>
-                        <Setter Property="Orientation" Value="Horizontal"/>
-                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="Margin" Value="0,8,0,0" />
+                        <Setter Property="Orientation" Value="Horizontal" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
                     </Style>
                     <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
-                        <Setter Property="Margin" Value="0,0,0,0"/>
-                        <Setter Property="Width" Value="120"/>
-                        <Setter Property="Height" Value="35"/>
-                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                        <Setter Property="materialDesign:TextFieldAssist.DecorationVisibility" Value="Collapsed"/>
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                        <Setter Property="Width" Value="120" />
+                        <Setter Property="Height" Value="35" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="materialDesign:TextFieldAssist.DecorationVisibility" Value="Collapsed" />
                     </Style>
                 </Grid.Resources>
 
@@ -104,19 +106,19 @@
                     <TextBlock HorizontalAlignment="Right">Username:</TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
-                    <materialDesign:PackIcon  Kind="Lock" Style="{StaticResource AlignWithTextBlock}"  />
+                    <materialDesign:PackIcon Kind="Lock" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Lock:</TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
-                    <materialDesign:PackIcon  Kind="Fingerprint" Style="{StaticResource AlignWithTextBlock}"  />
+                    <materialDesign:PackIcon Kind="Fingerprint" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Expire:</TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
-                    <materialDesign:PackIcon  Kind="Home" Style="{StaticResource AlignWithTextBlock}"  />
+                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Batch:</TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
-                    <materialDesign:PackIcon  Kind="NoteText" Style="{StaticResource AlignWithTextBlock}"  />
+                    <materialDesign:PackIcon Kind="NoteText" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Desc:</TextBlock>
                 </StackPanel>
 
@@ -125,7 +127,7 @@
                 <TextBox x:Name="TextBoxLock" Grid.Row="1" Grid.Column="1" IsReadOnly="True">Unlocked</TextBox>
                 <TextBox x:Name="TextBoxExpire" Grid.Row="2" Grid.Column="1" IsReadOnly="True">04/04/2017</TextBox>
                 <TextBox x:Name="TextBoxBatch" Grid.Row="3" Grid.Column="1" IsReadOnly="True">Yo!</TextBox>
-                <TextBox x:Name="TextBoxDesc" Grid.Row="4" Grid.Column="1" 
+                <TextBox x:Name="TextBoxDesc" Grid.Row="4" Grid.Column="1"
                          IsReadOnly="True"
                          TextWrapping="Wrap"
                          MaxHeight="70"
@@ -134,21 +136,23 @@
                          VerticalScrollBarVisibility="Auto"
                          AcceptsReturn="True"
                          TextAlignment="Left"
-                         VerticalAlignment="Top">Information Technology - Network</TextBox>
+                         VerticalAlignment="Top">
+                    Information Technology - Network
+                </TextBox>
 
 
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card x:Name="CardAction" Grid.Row="1" Grid.Column="1"
-                             Margin="5" 
+                             Margin="5"
                              Height="{Binding ElementName=CardUserStats,Path=Height}"
                              materialDesign:ShadowAssist.ShadowDepth="Depth1">
             <StackPanel Orientation="Vertical">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-                        <Setter Property="Width" Value="100"/>
-                        <Setter Property="Height" Value="25"/>
-                        <Setter Property="Margin" Value="5.5"/>
+                        <Setter Property="Width" Value="100" />
+                        <Setter Property="Height" Value="25" />
+                        <Setter Property="Margin" Value="5.5" />
                     </Style>
                 </StackPanel.Resources>
                 <Label>

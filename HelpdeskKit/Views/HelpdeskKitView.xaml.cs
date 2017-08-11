@@ -1,5 +1,4 @@
 ﻿using HelpdeskKit.Views;
-using HelpdeskKit.Views.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HelpdeskKit.ViewModels;
 
 namespace HelpdeskKit
 {
@@ -23,12 +23,13 @@ namespace HelpdeskKit
     /// </summary>
     public partial class HelpdeskKitView : Window
     {
-        public HelpdeskKitViewModel ViewModel { get; private set; } = new HelpdeskKitViewModel();
+        //public HelpdeskKitViewModel ViewModel { get; private set; }
         public HelpdeskKitView()
         {
-            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline), new FrameworkPropertyMetadata { DefaultValue = 56 });
             InitializeComponent();
-            this.DataContext = ViewModel;
+            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline), new FrameworkPropertyMetadata { DefaultValue = 56 });
+            //ViewModel = new HelpdeskKitViewModel();
+            //this.DataContext = ViewModel;
         }
 
         private void MenuItemListBox_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

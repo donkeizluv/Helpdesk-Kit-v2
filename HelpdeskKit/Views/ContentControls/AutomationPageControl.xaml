@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="430">
+             d:DesignHeight="350" d:DesignWidth="430"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">

@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
-namespace HelpdeskKit.ViewModels.Commands
+namespace HelpdeskKit.Commands
 {
     public class DelegateCommand : ICommand
     {
@@ -43,7 +44,8 @@ namespace HelpdeskKit.ViewModels.Commands
 
         public void RaiseCanExecuteChanged()
         {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            //CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            Application.Current.Dispatcher.Invoke(() => { CanExecuteChanged?.Invoke(this, EventArgs.Empty); });
         }
     }
 }

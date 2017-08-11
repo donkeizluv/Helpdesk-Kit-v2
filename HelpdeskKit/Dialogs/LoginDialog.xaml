@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="HelpdeskKit.Dialogs.LoginDialog"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:HelpdeskKit.ViewModels"
+             mc:Ignorable="d"
+             TextElement.Foreground="{StaticResource MaterialDesignBody}"
+             Background="{StaticResource MaterialDesignPaper}"
+             TextElement.FontWeight="Normal"
+             TextElement.FontSize="13.5"
+             Height="180" Width="250"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+    <!--<UserControl.DataContext>
+        <local:HelpdeskKitViewModel/>
+    </UserControl.DataContext>-->
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <StackPanel.Resources>
+            <Style TargetType="materialDesign:PackIcon" x:Key="AlignPackIcon">
+                <Setter Property="Margin" Value="5,15,5,0" />
+                <Setter Property="materialDesign:HintAssist.HintOpacity" Value="0.2" />
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+            <!--sync border for packicon-->
+            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource AlignPackIcon}"
+                   x:Key="PackIconUsernameSyncBorder">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelectionActive, ElementName=TextBoxUsername}"
+                                 Value="True">
+                        <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource AlignPackIcon}"
+                   x:Key="PackIconPwdSyncBorder">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelectionActive, ElementName=TextBoxPassword}"
+                                 Value="True">
+                        <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </StackPanel.Resources>
+        <Label>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Face" Style="{StaticResource PackIconUsernameSyncBorder}" />
+                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="{StaticResource MaterialDesignTextBoxBorder}"
+                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                         Width="150"
+                         materialDesign:HintAssist.Hint="Username"
+                         materialDesign:HintAssist.HintOpacity="0.2"
+                         x:Name="TextBoxUsername" />
+            </StackPanel>
+        </Label>
+        <Label>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Fingerprint" Style="{StaticResource PackIconPwdSyncBorder}" />
+                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="{StaticResource MaterialDesignTextBoxBorder}"
+                         Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                         Width="150"
+                         materialDesign:HintAssist.Hint="Password"
+                         materialDesign:HintAssist.HintOpacity="0.2"
+                         x:Name="TextBoxPassword" />
+            </StackPanel>
+        </Label>
+        <TextBlock Text="{Binding LoginStatusMessage}" Foreground="#F57C00" HorizontalAlignment="Center" Margin="3" />
+        <Button Width="70" Height="25" Margin="7" FontSize="12" Padding="0" Command="{Binding LoginCommand}">
+            <TextBlock Text="Login" />
+        </Button>
+    </StackPanel>
+</UserControl>

@@ -5,16 +5,25 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:HelpdeskKit.Views"
+		xmlns:viewModels="clr-namespace:HelpdeskKit.ViewModels"
 		mc:Ignorable="d"
 		Height="410" Width="430"
 		ResizeMode="NoResize"
-		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-		Background="{DynamicResource MaterialDesignPaper}"
+		TextElement.Foreground="{StaticResource MaterialDesignBody}"
+		Background="{StaticResource MaterialDesignPaper}"
 		TextElement.FontWeight="Normal"
 		TextElement.FontSize="13.5"
         Title="Helpdesk Kit"
+        WindowStartupLocation="CenterScreen"
 		FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-    <materialDesign:DialogHost>
+    <Window.Resources>
+        <local:InverseBooleanConverter x:Key="InverseBool"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewModels:HelpdeskKitViewModel/>
+    </Window.DataContext>
+    <materialDesign:DialogHost DialogContent="{Binding CurrentDialogContent}" 
+                               IsOpen="{Binding Authenticated, Converter={StaticResource InverseBool}}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="150">
