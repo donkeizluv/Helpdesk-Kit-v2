@@ -4,48 +4,69 @@ using System.Windows.Input;
 
 namespace HelpdeskKit.Commands
 {
-    public class DelegateCommand : ICommand
+    public class RelayCommand : ICommand
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        private Action<object> execute;
 
-        public DelegateCommand(Action<object> execute)
-            : this(execute, null)
+        private Predicate<object> canExecute;
+
+        private event EventHandler CanExecuteChangedInternal;
+
+        public RelayCommand(Action<object> execute)
+            : this(execute, DefaultCanExecute)
         {
         }
 
-        public DelegateCommand(Action<object> execute,
-            Predicate<object> canExecute)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            this.execute = execute ?? throw new ArgumentNullException("execute");
+            this.canExecute = canExecute ?? throw new ArgumentNullException("canExecute");
         }
 
-        #region ICommand Members
+        public event EventHandler CanExecuteChanged
+        {
+            add
+            {
+                CommandManager.RequerySuggested += value;
+                this.CanExecuteChangedInternal += value;
+            }
 
-        public event EventHandler CanExecuteChanged;
+            remove
+            {
+                CommandManager.RequerySuggested -= value;
+                this.CanExecuteChangedInternal -= value;
+            }
+        }
 
         public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
-            {
-                return true;
-            }
-
-            return _canExecute(parameter);
+            return this.canExecute != null && this.canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            this.execute(parameter);
         }
 
-        #endregion
-
-        public void RaiseCanExecuteChanged()
+        public void OnCanExecuteChanged()
         {
-            //CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-            Application.Current.Dispatcher.Invoke(() => { CanExecuteChanged?.Invoke(this, EventArgs.Empty); });
+            EventHandler handler = this.CanExecuteChangedInternal;
+            if (handler != null)
+            {
+                //DispatcherHelper.BeginInvokeOnUIThread(() => handler.Invoke(this, EventArgs.Empty));
+                handler.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public void Destroy()
+        {
+            this.canExecute = _ => false;
+            this.execute = _ => { return; };
+        }
+
+        private static bool DefaultCanExecute(object parameter)
+        {
+            return true;
         }
     }
 }

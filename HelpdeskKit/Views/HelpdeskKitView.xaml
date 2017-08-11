@@ -49,12 +49,6 @@
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <Grid>
-                <!--<Grid.Resources>
-                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
-                        <Setter Property="Width" Value="15"/>
-                        <Setter Property="Height" Value="15"/>
-                    </Style>
-                </Grid.Resources>-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*"/>
                     <RowDefinition Height="245*"/>
@@ -78,7 +72,7 @@
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
                                     Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"/>
-                        <TextBlock Text="{Binding ElementName=MenuItemListBox, Path=SelectedItem.Name}"
+                        <TextBlock Text="{Binding ElementName=MenuItemListBox, Path=SelectedItem.(local:MenuItem.Name)}"
                                x:Name="ContentTitle"
                                Grid.Column="1"
                                VerticalAlignment="Center"  
@@ -89,7 +83,7 @@
                     </Grid>
                 </materialDesign:ColorZone>
                 <!--content here!-->
-                <ContentControl Grid.Row="1" Content="{Binding ElementName=MenuItemListBox, Path=SelectedItem.Content}"/>
+                <ContentControl Grid.Row="1" Content="{Binding ElementName=MenuItemListBox, Path=SelectedItem.(local:MenuItem.Content)}"/>
             </Grid> 
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>

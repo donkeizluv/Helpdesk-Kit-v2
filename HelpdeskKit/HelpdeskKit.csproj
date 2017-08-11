@@ -86,10 +86,8 @@
     <Compile Include="Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AutomationPageControlViewModel.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Views\Converters.cs" />
-    <Compile Include="ViewModels\GeneralPageControlViewModel.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel_Login.cs" />
     <Compile Include="Views\ContentControls\AutomationPageControl.xaml.cs">

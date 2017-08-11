@@ -4,17 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:HelpdeskKit.ViewModels"
-             mc:Ignorable="d"
              TextElement.Foreground="{StaticResource MaterialDesignBody}"
              Background="{StaticResource MaterialDesignPaper}"
-             TextElement.FontWeight="Normal"
-             TextElement.FontSize="13.5"
-             Height="180" Width="250"
-             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-    <!--<UserControl.DataContext>
-        <local:HelpdeskKitViewModel/>
-    </UserControl.DataContext>-->
+             Height="180" Width="250">
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
         <StackPanel.Resources>
             <Style TargetType="materialDesign:PackIcon" x:Key="AlignPackIcon">
@@ -54,7 +46,11 @@
                          Width="150"
                          materialDesign:HintAssist.Hint="Username"
                          materialDesign:HintAssist.HintOpacity="0.2"
-                         x:Name="TextBoxUsername" />
+                         x:Name="TextBoxUsername">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding LoginCommand}" Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
             </StackPanel>
         </Label>
         <Label>
@@ -66,7 +62,11 @@
                          Width="150"
                          materialDesign:HintAssist.Hint="Password"
                          materialDesign:HintAssist.HintOpacity="0.2"
-                         x:Name="TextBoxPassword" />
+                         x:Name="TextBoxPassword" >
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding LoginCommand}" Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
             </StackPanel>
         </Label>
         <TextBlock Text="{Binding LoginStatusMessage}" Foreground="#F57C00" HorizontalAlignment="Center" Margin="3" />
