@@ -10,7 +10,7 @@ namespace HelpdeskKit.ViewModels
 
         private User _user;
 
-        private string _searchString;
+        private string _searchString = string.Empty;
 
         public string SearchString
         {

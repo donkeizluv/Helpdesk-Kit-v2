@@ -12,7 +12,7 @@ namespace HelpdeskKit.AD
         public bool Authenticate(string username, string pwd)
         {
             //mock login ad
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             return true;
         }
 

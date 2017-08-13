@@ -106,7 +106,7 @@ namespace HelpdeskKit.ViewModels
             {
                 //simulation
 #if DEBUG
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 //mock ad controler
                 return true;
 #endif

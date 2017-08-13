@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="350" d:DesignWidth="430"
+             d:DesignHeight="310" d:DesignWidth="420"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid>
         <Grid.Resources>
@@ -76,6 +76,7 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
                     <RowDefinition Height="2.5*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -88,14 +89,14 @@
                         <Setter Property="Foreground" Value="White" />
                     </Style>
                     <Style TargetType="StackPanel" x:Key="AlignWithTextBox">
-                        <Setter Property="Margin" Value="0,8,0,0" />
+                        <Setter Property="Margin" Value="0,-0.5,0,0" />
                         <Setter Property="Orientation" Value="Horizontal" />
                         <Setter Property="HorizontalAlignment" Value="Right" />
                     </Style>
                     <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
                         <Setter Property="Margin" Value="0,0,0,0" />
                         <Setter Property="Width" Value="120" />
-                        <Setter Property="Height" Value="35" />
+                        <Setter Property="Height" Value="25" />
                         <Setter Property="HorizontalAlignment" Value="Left" />
                         <Setter Property="materialDesign:TextFieldAssist.DecorationVisibility" Value="Collapsed" />
                     </Style>
@@ -106,32 +107,38 @@
                     <TextBlock HorizontalAlignment="Right">Username:</TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
+                    <materialDesign:PackIcon Kind="Check" Style="{StaticResource AlignWithTextBlock}" />
+                    <TextBlock>Active:</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
                     <materialDesign:PackIcon Kind="Lock" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Lock:</TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
-                    <materialDesign:PackIcon Kind="Fingerprint" Style="{StaticResource AlignWithTextBlock}" />
+                <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
+                    <materialDesign:PackIcon Kind="ClockAlert" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Expire:</TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
+                <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
                     <materialDesign:PackIcon Kind="Home" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Batch:</TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
+                <StackPanel Grid.Row="5" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
                     <materialDesign:PackIcon Kind="NoteText" Style="{StaticResource AlignWithTextBlock}" />
                     <TextBlock>Desc:</TextBlock>
                 </StackPanel>
 
 
-                <TextBox x:Name="TextBoxUsername" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
+                <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="True"
                          Text="{Binding CurrentUser.Ad}" />
-                <TextBox x:Name="TextBoxLock" Grid.Row="1" Grid.Column="1" IsReadOnly="True"
+                <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True"
+                         Text="{Binding CurrentUser.Active}" />
+                <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True"
                          Text="{Binding CurrentUser.Lock}" />
-                <TextBox x:Name="TextBoxExpire" Grid.Row="2" Grid.Column="1" IsReadOnly="True"
+                <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="True"
                          Text="{Binding CurrentUser.ExpireDate}" />
-                <TextBox x:Name="TextBoxBatch" Grid.Row="3" Grid.Column="1" IsReadOnly="True"
+                <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="True"
                          Text="{Binding CurrentUser.Batch}" />
-                <TextBox x:Name="TextBoxDesc" Grid.Row="4" Grid.Column="1"
+                <TextBox Grid.Row="5" Grid.Column="1"
                          IsReadOnly="True"
                          TextWrapping="Wrap"
                          MaxHeight="70"
