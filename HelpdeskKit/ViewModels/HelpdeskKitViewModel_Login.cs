@@ -1,22 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 using HelpdeskKit.AD;
 using HelpdeskKit.Commands;
+using HelpdeskKit.Dialogs;
 
 namespace HelpdeskKit.ViewModels
 {
     public partial class HelpdeskKitViewModel
     {
-        public RelayCommand LoginCommand => new RelayCommand((o) => LoginMethod(), (o) => CanExecuteLogin);
-
+        private bool _isLoggingIn;
+        private string _loginStatusMessage;
+        private string _password = string.Empty;
         private string _username = string.Empty;
+        public RelayCommand LoginCommand => new RelayCommand(o => LoginMethod(), o => CanExecuteLogin);
+        private bool _authenticated;
+
+        public bool Authenticated
+        {
+            get => _authenticated;
+            set
+            {
+                if (value == _authenticated) return;
+                _authenticated = value;
+                OnPropertyChanged(nameof(Authenticated));
+            }
+        }
         public string Username
         {
             get => _username;
@@ -28,7 +37,6 @@ namespace HelpdeskKit.ViewModels
             }
         }
 
-        private string _password = string.Empty;
         public string Password
         {
             get => _password;
@@ -39,9 +47,7 @@ namespace HelpdeskKit.ViewModels
                 //LoginCommand.OnCanExecuteChanged();
             }
         }
-        private string _loginStatusMessage;
 
-        private bool _isLoggingIn = false;
         public bool IsLoggingIn
         {
             get => _isLoggingIn;
@@ -63,6 +69,11 @@ namespace HelpdeskKit.ViewModels
         }
 
         public bool CanExecuteLogin => Username.Length > 0 && Password.Length > 0;
+        private void ShowLoginDialog()
+        {
+            DialogContent = new LoginDialog();
+            ShowDialog = true;
+        }
 
         private async void LoginMethod()
         {
@@ -74,6 +85,11 @@ namespace HelpdeskKit.ViewModels
                 if (await Task.Run(new Func<bool>(_login)).ConfigureAwait(false))
                 {
                     Authenticated = true;
+                    if (!(DialogContent is LoginDialog)) return;
+                    //hide dialog
+                    ShowDialog = false;
+                    //remove from host
+                    //DialogContent = null;
                     return;
                 }
                 LoginStatusMessage = "Login failed.";
@@ -83,10 +99,17 @@ namespace HelpdeskKit.ViewModels
                 IsLoggingIn = false;
             }
         }
+
         private bool _login()
         {
             try
             {
+                //simulation
+#if DEBUG
+                Thread.Sleep(2000);
+                //mock ad controler
+                return true;
+#endif
                 _controller = new AdController(Username, Password);
                 return true;
             }
@@ -94,7 +117,6 @@ namespace HelpdeskKit.ViewModels
             {
                 return false;
             }
-
         }
     }
 }

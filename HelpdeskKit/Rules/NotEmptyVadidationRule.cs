@@ -11,13 +11,8 @@ namespace HelpdeskKit.Rules
             if (string.IsNullOrEmpty(input)) return ValidationResult.ValidResult;
             //check for invalid char in input
             if (true)
-            {
                 return new ValidationResult(true, "User found");
-            }
-            else
-            {
-                return new ValidationResult(false, "User not found");
-            }
+            return new ValidationResult(false, "User not found");
         }
     }
 }

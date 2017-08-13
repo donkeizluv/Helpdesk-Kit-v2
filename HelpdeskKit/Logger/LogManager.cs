@@ -1,8 +1,6 @@
-﻿using HelpdeskKit.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
+using HelpdeskKit.Helpers;
 
 namespace HelpdeskKit.Logger
 {
@@ -37,16 +35,16 @@ namespace HelpdeskKit.Logger
                 //WriteLog(e.Log);
             }
         }
+        //            File.AppendAllLines(LogPath, CacheLogs, Encoding.UTF8);
+        //        {
+        //        if (CacheLogs.Count > 0) //try to write failed log first
+        //    {
+        //    try
+        //        Console.WriteLine(FormatLog(log));
+        //    if (IsConsole)
+        //{
 
         //private static void WriteLog(string log)
-        //{
-        //    if (IsConsole)
-        //        Console.WriteLine(FormatLog(log));
-        //    try
-        //    {
-        //        if (CacheLogs.Count > 0) //try to write failed log first
-        //        {
-        //            File.AppendAllLines(LogPath, CacheLogs, Encoding.UTF8);
         //            CacheLogs.Clear();
         //        }
         //        //write new log

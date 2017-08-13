@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Input;
 
 namespace HelpdeskKit.Commands
 {
     public class RelayCommand : ICommand
     {
-        private Action<object> execute;
-
         private Predicate<object> canExecute;
-
-        private event EventHandler CanExecuteChangedInternal;
+        private Action<object> execute;
 
         public RelayCommand(Action<object> execute)
             : this(execute, DefaultCanExecute)
@@ -28,40 +24,37 @@ namespace HelpdeskKit.Commands
             add
             {
                 CommandManager.RequerySuggested += value;
-                this.CanExecuteChangedInternal += value;
+                CanExecuteChangedInternal += value;
             }
 
             remove
             {
                 CommandManager.RequerySuggested -= value;
-                this.CanExecuteChangedInternal -= value;
+                CanExecuteChangedInternal -= value;
             }
         }
 
         public bool CanExecute(object parameter)
         {
-            return this.canExecute != null && this.canExecute(parameter);
+            return canExecute != null && canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
+            execute(parameter);
         }
+
+        private event EventHandler CanExecuteChangedInternal;
 
         public void OnCanExecuteChanged()
         {
-            EventHandler handler = this.CanExecuteChangedInternal;
-            if (handler != null)
-            {
-                //DispatcherHelper.BeginInvokeOnUIThread(() => handler.Invoke(this, EventArgs.Empty));
-                handler.Invoke(this, EventArgs.Empty);
-            }
+            CanExecuteChangedInternal?.Invoke(this, EventArgs.Empty);
         }
 
         public void Destroy()
         {
-            this.canExecute = _ => false;
-            this.execute = _ => { return; };
+            canExecute = _ => false;
+            execute = _ => { };
         }
 
         private static bool DefaultCanExecute(object parameter)

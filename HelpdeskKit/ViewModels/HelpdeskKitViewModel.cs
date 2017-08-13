@@ -1,74 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.DirectoryServices;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using HelpdeskKit.AD;
 using HelpdeskKit.Annotations;
 using HelpdeskKit.Dialogs;
-using HelpdeskKit.Views.ContentControls;
 using HelpdeskKit.Views;
-using HelpdeskKit.Models;
+using HelpdeskKit.Views.ContentControls;
 
 namespace HelpdeskKit.ViewModels
 {
     public partial class HelpdeskKitViewModel : INotifyPropertyChanged
     {
-        private DirectoryEntry _entry;
-        public DirectoryEntry CurrentEntry
+
+     
+        public HelpdeskKitViewModel()
         {
-            get { return _entry; }
-            set { _entry = value; }
+            InitItems();
+            ShowLoginDialog();
         }
 
 
-        private AdUser _user;
-        public AdUser CurrentUser
+
+        private bool _showDialog;
+
+        public bool ShowDialog
         {
-            get { return _user; }
+            get => _showDialog;
             set
             {
-                _user = value;
-                OnPropertyChanged(nameof(CurrentUser));
+                _showDialog = value;
+                OnPropertyChanged(nameof(ShowDialog));
+
             }
         }
 
-        public object CurrentDialogContent
+        private object _dialogContent;
+        public object DialogContent
         {
             get => _dialogContent;
             set
             {
                 //if (Equals(value, _dialogContent)) return;
                 _dialogContent = value;
-                OnPropertyChanged(nameof(CurrentDialogContent));
+                OnPropertyChanged(nameof(DialogContent));
             }
         }
 
-        public bool Authenticated
-        {
-            get => _authenticated;
-            set
-            {
-                if (value == _authenticated) return;
-                _authenticated = value;
-                OnPropertyChanged(nameof(Authenticated));
-            }
-        }
+      
 
         public MenuItem[] MenuItems { get; set; }
-
-        private AdController _controller;
-        private object _dialogContent;
-        private bool _authenticated = false;
-
-        public HelpdeskKitViewModel()
-        {
-            CurrentDialogContent = new LoginDialog();
-            InitItems();
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void InitItems()
         {
@@ -78,7 +59,6 @@ namespace HelpdeskKit.ViewModels
                 new MenuItem("Automation", new AutomationPageControl())
             };
         }
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

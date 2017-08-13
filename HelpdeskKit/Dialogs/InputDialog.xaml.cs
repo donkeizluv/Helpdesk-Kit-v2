@@ -1,14 +1,13 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace HelpdeskKit.Dialogs
 {
     /// <summary>
-    /// Interaction logic for InputDialog.xaml
+    ///     Interaction logic for InputDialog.xaml
     /// </summary>
     public partial class InputDialog : Window
     {
-        public string InputLabel { get; set; }
-        public string Input { get; set; }
         public InputDialog(string inputLabel)
         {
             InitializeComponent();
@@ -16,17 +15,18 @@ namespace HelpdeskKit.Dialogs
             DataContext = this;
         }
 
+        public string InputLabel { get; set; }
+        public string Input { get; set; }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
 
-        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.ImeProcessedKey == System.Windows.Input.Key.Escape)
-            {
+            if (e.ImeProcessedKey == Key.Escape)
                 Close();
-            }
         }
     }
 }

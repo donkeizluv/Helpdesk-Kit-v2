@@ -9,6 +9,7 @@ namespace HelpdeskKit.AD
 {
     public class AdController : IDisposable
     {
+        private ILogger _logger = LogManager.GetLogger(typeof(AdController));
         private DirectoryEntry _oDe;
         private DirectoryEntry _oDec;
         private DataSet _oDs;
@@ -19,7 +20,6 @@ namespace HelpdeskKit.AD
         private DataRow _oRwResult;
         private DataRow _oRwUser;
         private DataTable _oTb;
-        private ILogger _logger = LogManager.GetLogger(typeof(AdController));
 
         public AdController(string userName, string pwd)
         {
@@ -403,7 +403,7 @@ namespace HelpdeskKit.AD
 
         public DateTime GetPasswordExpirationDate(DirectoryEntry oDE)
         {
-            return (DateTime)oDE.InvokeGet("PasswordExpirationDate");
+            return (DateTime) oDE.InvokeGet("PasswordExpirationDate");
         }
 
         public bool IsAccountLocked(DirectoryEntry oDE)
@@ -501,7 +501,7 @@ namespace HelpdeskKit.AD
                 oGroupType = oGroupTypeInput | GroupType.SecurityGroup;
             else
                 oGroupType = oGroupTypeInput;
-            int typeNum = (int)oGroupType;
+            int typeNum = (int) oGroupType;
 
             //Add Properties to the Group
             var myGroup = _oDe.Children.Add("cn=" + sGroupName, "group");
@@ -537,7 +537,8 @@ namespace HelpdeskKit.AD
 
         public bool IsUserGroupMember(string sDN, string sGroupDN)
         {
-            _oDe = new DirectoryEntry("LDAP://" + sADServer + "/" + sDN, sADUser, sADPassword, AuthenticationTypes.Secure);
+            _oDe = new DirectoryEntry("LDAP://" + sADServer + "/" + sDN, sADUser, sADPassword,
+                AuthenticationTypes.Secure);
 
             string sUserName = GetProperty(_oDe, "sAMAccountName");
 
@@ -591,7 +592,7 @@ namespace HelpdeskKit.AD
         public byte[] GetProperty_Byte(DirectoryEntry oDE, string sPropertyName)
         {
             if (oDE.Properties.Contains(sPropertyName))
-                return (byte[])oDE.Properties[sPropertyName].Value;
+                return (byte[]) oDE.Properties[sPropertyName].Value;
             return null;
         }
 
@@ -732,7 +733,8 @@ namespace HelpdeskKit.AD
             return string.Empty;
         }
 
-        public ArrayList AttributeValuesMultiString(string sAttributeName, string sUserName, ArrayList oValuesCollection)
+        public ArrayList AttributeValuesMultiString(string sAttributeName, string sUserName,
+            ArrayList oValuesCollection)
         {
             _oDe = GetUser(sUserName);
 

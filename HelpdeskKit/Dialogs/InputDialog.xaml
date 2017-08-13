@@ -14,17 +14,17 @@
         TextElement.FontWeight="Normal"
         TextElement.FontSize="13.5"
         Title="Input"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" 
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         KeyUp="Window_KeyUp">
     <StackPanel Orientation="Vertical">
         <TextBox materialDesign:HintAssist.Hint="{Binding InputLabel}"
-                 Width="130" Height="30" 
-                 x:Name="TextBoxInput" 
+                 Width="130" Height="30"
+                 x:Name="TextBoxInput"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Text="{Binding Input}"
-                 Margin="10"/>
+                 Margin="10" />
         <Button Width="80" Height="30" Click="Button_Click">
-            <TextBlock Text="OK"/>
+            <TextBlock Text="OK" />
         </Button>
     </StackPanel>
 </Window>

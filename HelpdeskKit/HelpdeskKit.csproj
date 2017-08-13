@@ -68,6 +68,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AD\ADController.cs" />
+    <Compile Include="AD\AdUser.cs" />
+    <Compile Include="AD\IActiveDirectory.cs" />
+    <Compile Include="AD\MockMyAd.cs" />
+    <Compile Include="AD\MyAd.cs" />
     <Compile Include="Dialogs\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
@@ -80,13 +84,12 @@
     <Compile Include="Logger\NewLogEventArgs.cs" />
     <Compile Include="Logger\OnNewLogHandler.cs" />
     <Compile Include="Logger\SimpleLogger.cs" />
-    <Compile Include="Models\AdUser.cs" />
     <Compile Include="OutlookHelper\OutlookWrapper.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel_Operation.cs" />
     <Compile Include="Views\Converters.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel.cs" />

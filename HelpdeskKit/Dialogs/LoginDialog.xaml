@@ -25,19 +25,19 @@
             </Style>
             <!--sync border for packicon-->
             <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource AlignPackIcon}"
-                       x:Key="PackIconUsernameSyncBorder">
+                   x:Key="PackIconUsernameSyncBorder">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsSelectionActive, ElementName=TextBoxUsername}"
-                                     Value="True">
+                                 Value="True">
                         <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
             <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource AlignPackIcon}"
-                       x:Key="PackIconPwdSyncBorder">
+                   x:Key="PackIconPwdSyncBorder">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsSelectionActive, ElementName=TextBoxPassword}"
-                                     Value="True">
+                                 Value="True">
                         <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}" />
                     </DataTrigger>
                 </Style.Triggers>
@@ -47,13 +47,13 @@
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="Face" Style="{StaticResource PackIconUsernameSyncBorder}" />
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             BorderBrush="{StaticResource MaterialDesignTextBoxBorder}"
-                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
-                             Width="150"
-                             materialDesign:HintAssist.Hint="Username"
-                             materialDesign:HintAssist.HintOpacity="0.2"
-                             x:Name="TextBoxUsername"
-                             IsReadOnly="{Binding IsLoggingIn}">
+                         BorderBrush="{StaticResource MaterialDesignTextBoxBorder}"
+                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                         Width="150"
+                         materialDesign:HintAssist.Hint="Username"
+                         materialDesign:HintAssist.HintOpacity="0.2"
+                         x:Name="TextBoxUsername"
+                         IsReadOnly="{Binding IsLoggingIn}">
                     <TextBox.InputBindings>
                         <KeyBinding Command="{Binding LoginCommand}" Key="Enter" />
                     </TextBox.InputBindings>
@@ -64,13 +64,13 @@
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="Fingerprint" Style="{StaticResource PackIconPwdSyncBorder}" />
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             BorderBrush="{StaticResource MaterialDesignTextBoxBorder}"
-                             Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
-                             Width="150"
-                             materialDesign:HintAssist.Hint="Password"
-                             materialDesign:HintAssist.HintOpacity="0.2"
-                             x:Name="TextBoxPassword"
-                             IsReadOnly="{Binding IsLoggingIn}">
+                         BorderBrush="{StaticResource MaterialDesignTextBoxBorder}"
+                         Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                         Width="150"
+                         materialDesign:HintAssist.Hint="Password"
+                         materialDesign:HintAssist.HintOpacity="0.2"
+                         x:Name="TextBoxPassword"
+                         IsReadOnly="{Binding IsLoggingIn}">
                     <TextBox.InputBindings>
                         <KeyBinding Command="{Binding LoginCommand}" Key="Enter" />
                     </TextBox.InputBindings>
@@ -80,14 +80,17 @@
         <TextBlock Text="{Binding LoginStatusMessage}" Foreground="#F57C00" HorizontalAlignment="Center" Margin="3" />
         <Button Width="70" Height="28" Margin="7" FontSize="12" Padding="0" Command="{Binding LoginCommand}">
             <Canvas>
-                <TextBlock Text="Login" Visibility="{Binding IsLoggingIn, Converter={StaticResource rBoolToVisibility}}" Canvas.Left="-14" Canvas.Top="-8"/>
-                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
-                                Value="0"
-                                IsIndeterminate="True"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Visibility="{Binding IsLoggingIn, Converter={StaticResource BoolToVisibility}}"
-                                Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" Canvas.Left="-9" Canvas.Top="-10"/>
+                <TextBlock Text="Login"
+                           Visibility="{Binding IsLoggingIn, Converter={StaticResource rBoolToVisibility}}"
+                           Canvas.Left="-14" Canvas.Top="-8" />
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Value="0"
+                             IsIndeterminate="True"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Visibility="{Binding IsLoggingIn, Converter={StaticResource BoolToVisibility}}"
+                             Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" Canvas.Left="-9"
+                             Canvas.Top="-10" />
             </Canvas>
         </Button>
     </StackPanel>

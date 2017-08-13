@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.DirectoryServices;
+using HelpdeskKit.AD;
 using HelpdeskKit.Commands;
 
 namespace HelpdeskKit.ViewModels
 {
     public partial class HelpdeskKitViewModel
     {
+        private AdController _controller;
+
+        private User _user;
+
         private string _searchString;
 
         public string SearchString
@@ -21,13 +22,23 @@ namespace HelpdeskKit.ViewModels
             }
         }
 
-        public RelayCommand SearchAdCommand => new RelayCommand((o) => SearchAdMethod(), (o) => CanExecuteSearchAd);
+        public RelayCommand SearchAdCommand => new RelayCommand(o => SearchAdMethod(), o => CanExecuteSearchAd);
+
+        public bool CanExecuteSearchAd => SearchString.Length > 0;
 
         public void SearchAdMethod()
         {
-            
+
         }
 
-        public bool CanExecuteSearchAd => SearchString.Length > 0;
+        public User CurrentUser
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(CurrentUser));
+            }
+        }
     }
 }

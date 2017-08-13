@@ -9,6 +9,6 @@ namespace HelpdeskKit.Logger
             Log = log;
         }
 
-        public string Log { get; private set; }
+        public string Log { get; }
     }
 }

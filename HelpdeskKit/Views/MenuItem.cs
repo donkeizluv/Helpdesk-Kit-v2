@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace HelpdeskKit.Views
 {
     public class MenuItem : INotifyPropertyChanged
     {
-        private string _name;
         private object _content;
+
+        private string _name;
+
         //private ScrollBarVisibility _horizontalScrollBarVisibilityRequirement;
         //private ScrollBarVisibility _verticalScrollBarVisibilityRequirement;
         //private Thickness _marginRequirement = new Thickness(16);
@@ -22,7 +19,7 @@ namespace HelpdeskKit.Views
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 _name = value;
@@ -32,7 +29,7 @@ namespace HelpdeskKit.Views
 
         public object Content
         {
-            get { return _content; }
+            get => _content;
             set
             {
                 _content = value;
