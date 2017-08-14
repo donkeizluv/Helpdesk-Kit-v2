@@ -9,6 +9,10 @@ namespace HelpdeskKit.AD
 {
     public class MockMyAd : IActiveDirectory
     {
+        public MockMyAd()
+        {
+            
+        }
         public bool Authenticate(string username, string pwd)
         {
             //mock login ad
@@ -18,16 +22,36 @@ namespace HelpdeskKit.AD
 
         public bool SearchByUsername(string username, out User user)
         {
-            user = new User()
+            if (username.Contains("foo"))
             {
-                Ad = "test user",
-                Batch = string.Empty,
-                Description = "mocking bird",
-                ExpireDate = DateTime.Today,
-                Lock = false
+                user = new User()
+                {
+                    Ad = "foo.me",
+                    Batch = string.Empty,
+                    Description = "foobar!",
+                    ExpireDate = DateTime.Today,
+                    Lock = true,
+                    Active = false,
 
-            };
-            return true;
+                };
+                return true;
+            }
+            if (username.Contains("bar"))
+            {
+                user = new User()
+                {
+                    Ad = "bar.you",
+                    Batch = string.Empty,
+                    Description = "bar!",
+                    ExpireDate = DateTime.Today,
+                    Lock = false,
+                    Active = true,
+
+                };
+                return true;
+            }
+            user = null;
+            return false;
         }
 
         public bool SearchByHr(string hr, out User user)
@@ -38,7 +62,7 @@ namespace HelpdeskKit.AD
 
         public void Unlock(User user)
         {
-            throw new UnauthorizedAccessException("Cant change user pwd");
+            user.Lock = false;
         }
 
         public void ChangePassword(User user, string pwd)
@@ -53,7 +77,7 @@ namespace HelpdeskKit.AD
 
         public void Disable(User user)
         {
-            //user.
+            user.Active = false;
         }
     }
 }

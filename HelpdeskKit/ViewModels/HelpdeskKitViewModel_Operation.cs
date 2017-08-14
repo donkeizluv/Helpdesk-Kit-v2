@@ -1,34 +1,56 @@
 ﻿using System.DirectoryServices;
 using HelpdeskKit.AD;
 using HelpdeskKit.Commands;
+using System;
 
 namespace HelpdeskKit.ViewModels
 {
     public partial class HelpdeskKitViewModel
     {
-        private AdController _controller;
+        private IActiveDirectory _ad;
 
         private User _user;
 
-        private string _searchString = string.Empty;
+        private bool _seachByAd;
 
-        public string SearchString
+        public bool SearchByAd
         {
-            get => _searchString;
+            get => _seachByAd;
             set
             {
-                _searchString = value;
-                SearchAdCommand.OnCanExecuteChanged();
+                _seachByAd = value;
+                OnPropertyChanged(nameof(SearchByAd));
+
             }
         }
 
-        public RelayCommand SearchAdCommand => new RelayCommand(o => SearchAdMethod(), o => CanExecuteSearchAd);
+        public RelayCommand SearchAdCommand => new RelayCommand(SearchAdMethod, o => true);
 
-        public bool CanExecuteSearchAd => SearchString.Length > 0;
-
-        public void SearchAdMethod()
+        public void SearchAdMethod(object param)
         {
-
+            if (param == null) return;
+            if (param.GetType() != typeof(string))
+                throw new ArgumentException("Param must be string");
+            var search = param as string;
+            if (search.Length < 1) return;
+            if (SearchByAd)
+            {
+                if (_ad.SearchByUsername(search, out var user))
+                {
+                    CurrentUser = user;
+                    return;
+                }
+                CurrentUser = null;
+            }
+            else
+            {
+                if (_ad.SearchByHr(search, out var user))
+                {
+                    CurrentUser = user;
+                    return;
+                }
+                CurrentUser = null;
+            }
         }
 
         public User CurrentUser

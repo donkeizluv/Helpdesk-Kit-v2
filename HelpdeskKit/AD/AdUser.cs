@@ -8,7 +8,7 @@ namespace HelpdeskKit.AD
     public class User
     {
         public string Ad { get; set; }
-
+        public bool Active { get; set; }
         public bool Lock { get; set; }
 
         public DateTime ExpireDate { get; set; }

@@ -15,6 +15,8 @@ namespace HelpdeskKit.ViewModels
      
         public HelpdeskKitViewModel()
         {
+            _ad = new MockMyAd();
+            Init();
             InitItems();
             ShowLoginDialog();
         }
@@ -46,7 +48,10 @@ namespace HelpdeskKit.ViewModels
             }
         }
 
-      
+        private void Init()
+        {
+            SearchByAd = true;
+        }
 
         public MenuItem[] MenuItems { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;

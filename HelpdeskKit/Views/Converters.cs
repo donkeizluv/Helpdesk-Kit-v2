@@ -23,7 +23,7 @@ namespace HelpdeskKit.Views
         }
     }
 
-    public class BoolToVisibilityConverter : IValueConverter
+    public class VisibilityToBoolConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter,
             CultureInfo culture)
@@ -45,7 +45,7 @@ namespace HelpdeskKit.Views
         }
     }
 
-    public class ReverseBoolToVisibilityConverter : IValueConverter
+    public class InverseVisibilityToBoolConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter,
             CultureInfo culture)
@@ -64,6 +64,50 @@ namespace HelpdeskKit.Views
             if (value == null) throw new NullReferenceException("Value is null");
             var visible = (Visibility) value;
             return visible == Visibility.Hidden;
+        }
+    }
+
+    public class WarningColorToBoolConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ActiveBoolToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (targetType != typeof(string))
+                throw new InvalidOperationException("The target must be a string");
+            return value != null && (bool)value ? "Active" : "Inactive";
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+    public class LockBoolToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (targetType != typeof(string))
+                throw new InvalidOperationException("The target must be a string");
+            return value != null && (bool)value ? "Locked" : "Unlock";
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 }

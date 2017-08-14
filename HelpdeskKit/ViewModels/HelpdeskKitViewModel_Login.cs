@@ -104,14 +104,7 @@ namespace HelpdeskKit.ViewModels
         {
             try
             {
-                //simulation
-#if DEBUG
-                Thread.Sleep(1000);
-                //mock ad controler
-                return true;
-#endif
-                _controller = new AdController(Username, Password);
-                return true;
+                return _ad.Authenticate(Username, Password);
             }
             catch (Exception e)
             {

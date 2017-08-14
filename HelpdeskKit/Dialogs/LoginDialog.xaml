@@ -10,8 +10,8 @@
              Height="180" Width="250">
     <UserControl.Resources>
         <v:InverseBooleanConverter x:Key="InverseBool" />
-        <v:BoolToVisibilityConverter x:Key="BoolToVisibility" />
-        <v:ReverseBoolToVisibilityConverter x:Key="rBoolToVisibility" />
+        <v:VisibilityToBoolConverter x:Key="BoolToVisibility" />
+        <v:InverseVisibilityToBoolConverter x:Key="rBoolToVisibility" />
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
         <StackPanel.Resources>
