@@ -12,7 +12,6 @@ namespace HelpdeskKit.AD
         public bool Lock { get; set; }
 
         public DateTime ExpireDate { get; set; }
-
         public bool IsExpired => DateTime.Compare(DateTime.Today, ExpireDate.Date) < 0;
 
         public string Batch { get; set; }

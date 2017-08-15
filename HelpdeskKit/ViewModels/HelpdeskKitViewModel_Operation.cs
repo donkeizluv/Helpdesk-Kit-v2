@@ -1,5 +1,4 @@
-﻿using System.DirectoryServices;
-using HelpdeskKit.AD;
+﻿using HelpdeskKit.AD;
 using HelpdeskKit.Commands;
 using System;
 
@@ -10,9 +9,17 @@ namespace HelpdeskKit.ViewModels
         private IActiveDirectory _ad;
 
         private User _user;
+        public User CurrentUser
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(CurrentUser));
+            }
+        }
 
         private bool _seachByAd;
-
         public bool SearchByAd
         {
             get => _seachByAd;
@@ -24,9 +31,8 @@ namespace HelpdeskKit.ViewModels
             }
         }
 
-        public RelayCommand SearchAdCommand => new RelayCommand(SearchAdMethod, o => true);
-
-        public void SearchAdMethod(object param)
+        public RelayCommand SearchAdCommand => new RelayCommand(SearchAdMethod);
+        private void SearchAdMethod(object param)
         {
             if (param == null) return;
             if (param.GetType() != typeof(string))
@@ -53,14 +59,15 @@ namespace HelpdeskKit.ViewModels
             }
         }
 
-        public User CurrentUser
+        public RelayCommand UnlockCommand => new RelayCommand(UnlockMethod, (o)=>(o != null));
+        private void UnlockMethod(object param)
         {
-            get => _user;
-            set
-            {
-                _user = value;
-                OnPropertyChanged(nameof(CurrentUser));
-            }
+            if (param == null) throw new ArgumentNullException();
+            if (param.GetType() != typeof(User)) throw new ArgumentException();
+            _ad.Unlock(param as User);
+            OnPropertyChanged(nameof(CurrentUser));
         }
+
+
     }
 }

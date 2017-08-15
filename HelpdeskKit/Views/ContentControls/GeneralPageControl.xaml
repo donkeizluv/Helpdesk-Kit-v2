@@ -10,13 +10,14 @@
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid>
         <Grid.Resources>
-            <v:ActiveBoolToStringConverter x:Key="ActiveBoolConverter"/>
-            <v:LockBoolToStringConverter x:Key="LockBoolConverter"/>
+            <v:ActiveBoolToStringConverter x:Key="ActiveBoolConverter" />
+            <v:LockBoolToStringConverter x:Key="LockBoolConverter" />
             <Style TargetType="TextBlock" x:Key="TextBlockMargin">
                 <Setter Property="Margin" Value="10,9,10,10" />
+                <Setter Property="Foreground" Value="{StaticResource MaterialDesignTextBoxBorder}" />
             </Style>
-            <SolidColorBrush x:Key="HighlightWarning" Color="#E65100"/>
-            <SolidColorBrush x:Key="HighlightOk" Color="#76FF03"/>
+            <SolidColorBrush x:Key="HighlightWarning" Color="#E65100" />
+            <SolidColorBrush x:Key="HighlightOk" Color="#76FF03" />
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="350*" />
@@ -45,16 +46,16 @@
                 </Style>
             </StackPanel.Resources>
             <TextBox x:Name="TextBoxSearchUser"
-                Width="120"
-                Height="40"
-                materialDesign:HintAssist.Hint="Search"
-                materialDesign:HintAssist.HintOpacity="0.2"
-                Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                     Width="120"
+                     Height="40"
+                     materialDesign:HintAssist.Hint="Search"
+                     materialDesign:HintAssist.HintOpacity="0.2"
+                     Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                 <TextBox.InputBindings>
-                    <KeyBinding Command="{Binding SearchAdCommand}" 
+                    <KeyBinding Command="{Binding SearchAdCommand}"
                                 CommandParameter="{Binding Text, ElementName=TextBoxSearchUser}"
-                                Key="Enter"/>
+                                Key="Enter" />
                 </TextBox.InputBindings>
             </TextBox>
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
@@ -70,7 +71,8 @@
                                          Margin="0" />
             </Button>
 
-            <RadioButton IsChecked="{Binding SearchByAd}" GroupName="SearchType" Width="50" Height="25" Margin="25,20,0,0">
+            <RadioButton IsChecked="{Binding SearchByAd}" GroupName="SearchType" Width="50" Height="25"
+                         Margin="25,20,0,0">
                 <TextBlock Margin="0">AD</TextBlock>
             </RadioButton>
             <RadioButton GroupName="SearchType" Width="50" Height="25" Margin="5,20,0,0">
@@ -99,7 +101,7 @@
                 <Grid.Resources>
                     <Style TargetType="materialDesign:PackIcon" x:Key="AlignWithTextBlock">
                         <Setter Property="Margin" Value="0,9,0,0" />
-                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Foreground" Value="{StaticResource MaterialDesignTextBoxBorder}" />
                     </Style>
                     <Style TargetType="StackPanel" x:Key="AlignWithTextBox">
                         <Setter Property="Orientation" Value="Horizontal" />
@@ -124,33 +126,75 @@
                             <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource AlignWithTextBlock}">
                                 <!--default-->
                                 <!--DataTrigger wont change Kind if explicitly get set in element-->
-                                <Setter Property="Kind" Value="Check"/>
+                                <Setter Property="Kind" Value="Check" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CurrentUser.Active}" Value="True">
-                                        <Setter Property="Kind" Value="Check"/>
-                                        <Setter Property="Foreground" Value="{StaticResource HighlightOk}"/>
+                                        <Setter Property="Kind" Value="Check" />
+                                        <Setter Property="Foreground" Value="{StaticResource HighlightOk}" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentUser.Active}" Value="False">
-                                        <Setter Property="Kind" Value="WindowClose"/>
-                                        <Setter Property="Foreground" Value="{StaticResource HighlightWarning}"/>
+                                        <Setter Property="Kind" Value="WindowClose" />
+                                        <Setter Property="Foreground" Value="{StaticResource HighlightWarning}" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </materialDesign:PackIcon.Style>
                     </materialDesign:PackIcon>
-                    <TextBlock Name="TextBlockActiveStatus" 
+                    <TextBlock Name="TextBlockActiveStatus"
                                Style="{StaticResource TextBlockMargin}"
                                Foreground="{Binding Foreground, ElementName=ActiveIcon}">
                         Active:
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
-                    <materialDesign:PackIcon Kind="Lock" Style="{StaticResource AlignWithTextBlock}" />
-                    <TextBlock Style="{StaticResource TextBlockMargin}">Lock:</TextBlock>
+                    <materialDesign:PackIcon Name="LockIcon">
+                        <materialDesign:PackIcon.Style>
+                            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource AlignWithTextBlock}">
+                                <!--default-->
+                                <!--DataTrigger wont change Kind if explicitly get set in element-->
+                                <Setter Property="Kind" Value="LockOpen" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentUser.Lock}" Value="False">
+                                        <Setter Property="Kind" Value="LockOpen" />
+                                        <Setter Property="Foreground" Value="{StaticResource HighlightOk}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentUser.Lock}" Value="True">
+                                        <Setter Property="Kind" Value="Lock" />
+                                        <Setter Property="Foreground" Value="{StaticResource HighlightWarning}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:PackIcon.Style>
+                    </materialDesign:PackIcon>
+                    <TextBlock Style="{StaticResource TextBlockMargin}"
+                               Foreground="{Binding Foreground, ElementName=LockIcon}">
+                        Lock:
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
-                    <materialDesign:PackIcon Kind="ClockAlert" Style="{StaticResource AlignWithTextBlock}" />
-                    <TextBlock Style="{StaticResource TextBlockMargin}">Expire:</TextBlock>
+                    <materialDesign:PackIcon Name="ClockExpireIcon">
+                        <materialDesign:PackIcon.Style>
+                            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource AlignWithTextBlock}">
+                                <!--default-->
+                                <!--DataTrigger wont change Kind if explicitly get set in element-->
+                                <Setter Property="Kind" Value="Clock" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentUser.IsExpired}" Value="False">
+                                        <Setter Property="Kind" Value="Clock" />
+                                        <Setter Property="Foreground" Value="{StaticResource HighlightOk}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentUser.IsExpired}" Value="True">
+                                        <Setter Property="Kind" Value="ClockAlert" />
+                                        <Setter Property="Foreground" Value="{StaticResource HighlightWarning}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:PackIcon.Style>
+                    </materialDesign:PackIcon>
+                    <TextBlock Style="{StaticResource TextBlockMargin}"
+                               Foreground="{Binding Foreground, ElementName=ClockExpireIcon}">
+                        Expire:
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource AlignWithTextBox}">
                     <materialDesign:PackIcon Kind="Home" Style="{StaticResource AlignWithTextBlock}" />
@@ -163,17 +207,21 @@
 
 
                 <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="True"
-                         Text="{Binding CurrentUser.Ad}" />
+                         Text="{Binding CurrentUser.Ad, Mode=OneWay}" />
                 <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True"
-                         Text="{Binding CurrentUser.Active, Mode=OneWay, Converter={StaticResource ActiveBoolConverter}}" 
-                         Foreground="{Binding Foreground, ElementName=TextBlockActiveStatus}"
-                         BorderBrush="{Binding Foreground, ElementName=TextBlockActiveStatus}"/>
+                         Text="{Binding CurrentUser.Active, Mode=OneWay, Converter={StaticResource ActiveBoolConverter}}"
+                         Foreground="{Binding Foreground, ElementName=ActiveIcon}"
+                         BorderBrush="{Binding Foreground, ElementName=ActiveIcon}" />
                 <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True"
-                         Text="{Binding CurrentUser.Lock, Mode=OneWay, Converter={StaticResource LockBoolConverter}}" />
+                         Text="{Binding CurrentUser.Lock, Mode=OneWay, Converter={StaticResource LockBoolConverter}}"
+                         Foreground="{Binding Foreground, ElementName=LockIcon}"
+                         BorderBrush="{Binding Foreground, ElementName=LockIcon}" />
                 <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="True"
-                         Text="{Binding CurrentUser.ExpireDate}" />
+                         Text="{Binding CurrentUser.ExpireDate}"
+                         Foreground="{Binding Foreground, ElementName=ClockExpireIcon}"
+                         BorderBrush="{Binding Foreground, ElementName=ClockExpireIcon}" />
                 <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="True"
-                         Text="{Binding CurrentUser.Batch}" />
+                         Text="{Binding CurrentUser.Batch, Mode=OneWay}" />
                 <TextBox Grid.Row="5" Grid.Column="1"
                          IsReadOnly="True"
                          TextWrapping="Wrap"
@@ -184,7 +232,7 @@
                          AcceptsReturn="True"
                          TextAlignment="Left"
                          VerticalAlignment="Top"
-                         Text="{Binding CurrentUser.Description}" />
+                         Text="{Binding CurrentUser.Description, Mode=OneWay}" />
 
 
             </Grid>
@@ -203,21 +251,21 @@
                 </StackPanel.Resources>
                 <Label>
                     <StackPanel Orientation="Horizontal">
-                        <Button>
+                        <Button Command="{Binding UnlockCommand}" CommandParameter="{Binding CurrentUser}">
                             Unlock
                         </Button>
                     </StackPanel>
                 </Label>
                 <Label>
                     <StackPanel Orientation="Horizontal">
-                        <Button>
+                        <Button Command="{Binding ChangePasswordCommand}">
                             Password
                         </Button>
                     </StackPanel>
                 </Label>
                 <Label>
                     <StackPanel Orientation="Horizontal">
-                        <Button>
+                        <Button Command="{Binding ChangeBatchCommand}">
                             Batch
                         </Button>
                     </StackPanel>
@@ -225,7 +273,7 @@
 
                 <Label>
                     <StackPanel Orientation="Horizontal">
-                        <Button>
+                        <Button Command="{Binding DisableCommand}">
                             Disable
                         </Button>
                     </StackPanel>

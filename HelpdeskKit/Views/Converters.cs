@@ -67,26 +67,13 @@ namespace HelpdeskKit.Views
         }
     }
 
-    public class WarningColorToBoolConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class ActiveBoolToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (targetType != typeof(string))
                 throw new InvalidOperationException("The target must be a string");
-            return value != null && (bool)value ? "Active" : "Inactive";
+            return value != null && (bool) value ? "Active" : "Inactive";
 
         }
 
@@ -95,13 +82,14 @@ namespace HelpdeskKit.Views
             throw new NotSupportedException();
         }
     }
+
     public class LockBoolToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (targetType != typeof(string))
                 throw new InvalidOperationException("The target must be a string");
-            return value != null && (bool)value ? "Locked" : "Unlock";
+            return value != null && (bool) value ? "Locked" : "Unlocked";
 
         }
 
