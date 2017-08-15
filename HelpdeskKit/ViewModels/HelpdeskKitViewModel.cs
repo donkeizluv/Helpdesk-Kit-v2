@@ -6,13 +6,12 @@ using HelpdeskKit.Annotations;
 using HelpdeskKit.Dialogs;
 using HelpdeskKit.Views;
 using HelpdeskKit.Views.ContentControls;
+using System;
 
 namespace HelpdeskKit.ViewModels
 {
     public partial class HelpdeskKitViewModel : INotifyPropertyChanged
     {
-
-     
         public HelpdeskKitViewModel()
         {
             _ad = new MockMyAd();
@@ -21,10 +20,34 @@ namespace HelpdeskKit.ViewModels
             ShowLoginDialog();
         }
 
+        private void ShowLoginDialog()
+        {
+            var view = new LoginDialog();
+            var vm = new LoginDialogViewModel(ContinuedLogin);
+            view.DataContext = vm;
+            vm.RequestCloseEventArgs += CloseDialog;
+            DialogContent = view;
+            ShowDialog = true;
+        }
 
+        private void CloseDialog(object sender, RequestCloseEventArgs e)
+        {
+            ShowDialog = false;
+            //should i?
+            //or should i cache all the dialogs?
+            var dialog = (ICloseable)sender;
+            dialog.RequestCloseEventArgs -= CloseDialog;
+        }
+
+        private void ContinuedLogin(object context)
+        {
+            if (context.GetType() != typeof(LoginDialogViewModel)) throw new InvalidOperationException();
+            var vm = (LoginDialogViewModel) context;
+            //Ad should be instanciate otherwise should not have escaped login dialog
+            _ad = vm.Ad ?? throw new InvalidProgramException();
+        }
 
         private bool _showDialog;
-
         public bool ShowDialog
         {
             get => _showDialog;

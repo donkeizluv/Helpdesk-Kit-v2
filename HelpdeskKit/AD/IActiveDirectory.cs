@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HelpdeskKit.AD
 {
-    interface IActiveDirectory
+    public interface IActiveDirectory
     {
         bool Authenticate(string username, string pwd);
         bool SearchByUsername(string username, out User user);

@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Threading;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using HelpdeskKit.AD;
+using HelpdeskKit.Annotations;
 using HelpdeskKit.Commands;
-using HelpdeskKit.Dialogs;
+using HelpdeskKit.AD;
+using HelpdeskKit.Views;
 
 namespace HelpdeskKit.ViewModels
 {
-    public partial class HelpdeskKitViewModel
+    public class LoginDialogViewModel : INotifyPropertyChanged, ICloseable
     {
+        public IActiveDirectory Ad { get; private set; }
         private bool _isLoggingIn;
         private string _loginStatusMessage;
         private string _password = string.Empty;
         private string _username = string.Empty;
         public RelayCommand LoginCommand => new RelayCommand(o => LoginMethod(), o => CanExecuteLogin);
-        private bool _authenticated;
-
-        public bool Authenticated
+        private Action<object> _continue;
+        public LoginDialogViewModel(Action<object> continueMethod)
         {
-            get => _authenticated;
-            set
-            {
-                if (value == _authenticated) return;
-                _authenticated = value;
-                OnPropertyChanged(nameof(Authenticated));
-            }
+            //continue execution after request close this dialog
+            _continue = continueMethod;
         }
         public string Username
         {
@@ -69,27 +66,21 @@ namespace HelpdeskKit.ViewModels
         }
 
         public bool CanExecuteLogin => Username.Length > 0 && Password.Length > 0;
-        private void ShowLoginDialog()
-        {
-            DialogContent = new LoginDialog();
-            ShowDialog = true;
-        }
+
 
         private async void LoginMethod()
         {
-            if (IsLoggingIn || Authenticated) return;
+            if (IsLoggingIn) return;
             try
             {
                 IsLoggingIn = true;
                 LoginStatusMessage = string.Empty;
                 if (await Task.Run(new Func<bool>(_login)).ConfigureAwait(false))
                 {
-                    Authenticated = true;
-                    if (!(DialogContent is LoginDialog)) return;
-                    //hide dialog
-                    ShowDialog = false;
-                    //remove from host
-                    //DialogContent = null;
+                    InvokeRequestCloseDialog(new RequestCloseEventArgs());
+                    //done this dialog's part
+                    //continue with parent's context method
+                    _continue?.Invoke(this);
                     return;
                 }
                 LoginStatusMessage = "Login failed.";
@@ -104,12 +95,26 @@ namespace HelpdeskKit.ViewModels
         {
             try
             {
-                return _ad.Authenticate(Username, Password);
+                //TODO: use ninject
+                Ad = new MockMyAd();
+                return Ad.Authenticate(Username, Password);
             }
             catch (Exception e)
             {
                 return false;
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void InvokeRequestCloseDialog(RequestCloseEventArgs e)
+        {
+            RequestCloseEventArgs?.Invoke(this, e);
+        }
+        public event EventHandler<RequestCloseEventArgs> RequestCloseEventArgs;
     }
 }

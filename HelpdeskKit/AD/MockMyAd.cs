@@ -17,7 +17,7 @@ namespace HelpdeskKit.AD
         {
             //mock login ad
             Thread.Sleep(1000);
-            return true;
+            return string.Compare(username, "admin", true) == 0 && string.Compare(pwd, "admin", true) == 0;
         }
 
         public bool SearchByUsername(string username, out User user)
