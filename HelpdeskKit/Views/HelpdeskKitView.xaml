@@ -40,7 +40,6 @@
                              ItemsSource="{Binding MenuItems}"
                              HorizontalAlignment="Center"
                              PreviewMouseLeftButtonUp="MenuItemListBox_PreviewMouseLeftButtonUp">
-
                             <ListBox.ItemTemplate>
                             <DataTemplate DataType="local:MenuItem">
                                 <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
@@ -86,6 +85,10 @@
                 <!--content here!-->
                 <ContentControl Grid.Row="1"
                                 Content="{Binding ElementName=MenuItemListBox, Path=SelectedItem.(local:MenuItem.Content)}" />
+                <materialDesign:Snackbar IsActive="{Binding ShowSnackBar}" 
+                                         Grid.Row="1"
+                                         Message="{Binding SnackBarMessage}">
+                </materialDesign:Snackbar>
             </Grid>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>
