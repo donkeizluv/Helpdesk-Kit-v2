@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace HelpdeskKit.Dialogs
+namespace HelpdeskKit.Views
 {
     /// <summary>
     ///     Interaction logic for LoginDialog.xaml

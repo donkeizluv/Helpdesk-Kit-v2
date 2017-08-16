@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using HelpdeskKit.Annotations;
-using HelpdeskKit.Dialogs;
+using HelpdeskKit.Views;
 using HelpdeskKit.Views;
 using HelpdeskKit.Views.ContentControls;
 using System;

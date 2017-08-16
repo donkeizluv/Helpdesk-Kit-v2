@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace HelpdeskKit.Dialogs
+namespace HelpdeskKit.Views
 {
     /// <summary>
     ///     Interaction logic for InputDialog.xaml

@@ -1,7 +1,7 @@
 ﻿using HelpdeskKit.AD;
 using HelpdeskKit.Commands;
 using System;
-using HelpdeskKit.Dialogs;
+using HelpdeskKit.Views;
 
 namespace HelpdeskKit.ViewModels
 {

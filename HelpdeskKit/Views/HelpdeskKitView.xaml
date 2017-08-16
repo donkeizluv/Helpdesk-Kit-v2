@@ -40,7 +40,8 @@
                              ItemsSource="{Binding MenuItems}"
                              HorizontalAlignment="Center"
                              PreviewMouseLeftButtonUp="MenuItemListBox_PreviewMouseLeftButtonUp">
-                        <ListBox.ItemTemplate>
+
+                            <ListBox.ItemTemplate>
                             <DataTemplate DataType="local:MenuItem">
                                 <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
                             </DataTemplate>

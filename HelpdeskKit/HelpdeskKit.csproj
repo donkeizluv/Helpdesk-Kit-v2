@@ -69,10 +69,10 @@
     <Compile Include="AD\IActiveDirectory.cs" />
     <Compile Include="AD\MockMyAd.cs" />
     <Compile Include="AD\MyAd.cs" />
-    <Compile Include="Dialogs\InputDialog.xaml.cs">
+    <Compile Include="Views\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\LoginDialog.xaml.cs">
+    <Compile Include="Views\LoginDialog.xaml.cs">
       <DependentUpon>LoginDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\StaticHelper.cs" />
@@ -97,11 +97,11 @@
     </Compile>
     <Compile Include="Views\ICloseable.cs" />
     <Compile Include="Views\MenuItem.cs" />
-    <Page Include="Dialogs\InputDialog.xaml">
+    <Page Include="Views\InputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\LoginDialog.xaml">
+    <Page Include="Views\LoginDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
