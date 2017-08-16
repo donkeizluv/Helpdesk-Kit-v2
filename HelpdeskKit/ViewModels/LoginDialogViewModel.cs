@@ -14,14 +14,14 @@ namespace HelpdeskKit.ViewModels
         public IActiveDirectory Ad { get; private set; }
         private bool _isLoggingIn;
         private string _loginStatusMessage;
-        private string _password = string.Empty;
-        private string _username = string.Empty;
+        private string _password;
+        private string _username;
         public RelayCommand LoginCommand => new RelayCommand(o => LoginMethod(), o => CanExecuteLogin);
-        private Action<object> _continue;
-        public LoginDialogViewModel(Action<object> continueMethod)
+        private Action<object> _continueWith;
+        public LoginDialogViewModel(Action<object> continueWith)
         {
             //continue execution after request close this dialog
-            _continue = continueMethod;
+            _continueWith = continueWith;
         }
         public string Username
         {
@@ -30,6 +30,7 @@ namespace HelpdeskKit.ViewModels
             {
                 _username = value;
                 OnPropertyChanged(nameof(Username));
+                LoginStatusMessage = string.Empty;
                 //LoginCommand.OnCanExecuteChanged();
             }
         }
@@ -41,6 +42,7 @@ namespace HelpdeskKit.ViewModels
             {
                 _password = value;
                 OnPropertyChanged(nameof(Password));
+                LoginStatusMessage = string.Empty;
                 //LoginCommand.OnCanExecuteChanged();
             }
         }
@@ -65,7 +67,7 @@ namespace HelpdeskKit.ViewModels
             }
         }
 
-        public bool CanExecuteLogin => Username.Length > 0 && Password.Length > 0;
+        public bool CanExecuteLogin => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
 
 
         private async void LoginMethod()
@@ -80,7 +82,7 @@ namespace HelpdeskKit.ViewModels
                     InvokeRequestCloseDialog(new RequestCloseEventArgs());
                     //done this dialog's part
                     //continue with parent's context method
-                    _continue?.Invoke(this);
+                    _continueWith?.Invoke(this);
                     return;
                 }
                 LoginStatusMessage = "Login failed.";

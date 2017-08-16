@@ -65,7 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AD\ADController.cs" />
-    <Compile Include="AD\AdUser.cs" />
+    <Compile Include="AD\User.cs" />
     <Compile Include="AD\IActiveDirectory.cs" />
     <Compile Include="AD\MockMyAd.cs" />
     <Compile Include="AD\MyAd.cs" />
@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel_Operation.cs" />
+    <Compile Include="ViewModels\InputDialogViewModel.cs" />
     <Compile Include="ViewModels\LoginDialogViewModel.cs" />
     <Compile Include="Views\Converters.cs" />
     <Compile Include="ViewModels\HelpdeskKitViewModel.cs" />

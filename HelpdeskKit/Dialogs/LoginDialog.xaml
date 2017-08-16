@@ -77,8 +77,9 @@
                 </TextBox>
             </StackPanel>
         </Label>
-        <TextBlock Text="{Binding LoginStatusMessage}" Foreground="#F57C00" HorizontalAlignment="Center" Margin="3" />
-        <Button Width="70" Height="28" Margin="7" FontSize="12" Padding="0" Command="{Binding LoginCommand}">
+        <Button Width="70" Height="28" Margin="3" FontSize="12" Padding="0" 
+                Command="{Binding LoginCommand}"
+                Style="{StaticResource MaterialDesignFlatButton}">
             <Canvas>
                 <TextBlock Text="Login"
                            Visibility="{Binding IsLoggingIn, Converter={StaticResource rBoolToVisibility}}"
@@ -89,9 +90,11 @@
                              VerticalAlignment="Center"
                              HorizontalAlignment="Center"
                              Visibility="{Binding IsLoggingIn, Converter={StaticResource BoolToVisibility}}"
-                             Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" Canvas.Left="-9"
+                             Foreground="#FF9800" 
+                             Canvas.Left="-9"
                              Canvas.Top="-10" />
             </Canvas>
         </Button>
+        <TextBlock Text="{Binding LoginStatusMessage}" Foreground="#F57C00" HorizontalAlignment="Center" Margin="3" />
     </StackPanel>
 </UserControl>

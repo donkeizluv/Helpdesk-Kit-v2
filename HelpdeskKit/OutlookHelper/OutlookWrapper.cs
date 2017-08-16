@@ -128,7 +128,7 @@ namespace HelpdeskKit.OutlookHelper
             bool found = false;
             string id = string.Empty;
 
-            void searchFolderEntryID(string name, MAPIFolder folder)
+            void SearchFolderEntryId(string name, MAPIFolder folder)
             {
                 if (string.Compare(folder.Name, name, true) == 0)
                 {
@@ -139,11 +139,11 @@ namespace HelpdeskKit.OutlookHelper
                 foreach (MAPIFolder f in folder.Folders)
                 {
                     if (found) break;
-                    searchFolderEntryID(name, f);
+                    SearchFolderEntryId(name, f);
                 }
             }
 
-            searchFolderEntryID(folderName, rootFolder);
+            SearchFolderEntryId(folderName, rootFolder);
             entryID = id;
             return found;
         }

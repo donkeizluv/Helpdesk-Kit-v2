@@ -7,24 +7,39 @@
         xmlns:local="clr-namespace:HelpdeskKit.Dialogs"
         mc:Ignorable="d"
         Height="100" Width="300"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{StaticResource MaterialDesignBody}"
+        Background="{StaticResource MaterialDesignPaper}"
         TextElement.FontWeight="Normal"
         TextElement.FontSize="13.5"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <StackPanel Orientation="Vertical">
-        <TextBox materialDesign:HintAssist.Hint="{Binding InputLabel}"
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Width" Value="60"/>
+                <Setter Property="Height" Value="25"/>
+            </Style>
+        </StackPanel.Resources>
+        <TextBox Name="TextBoxInput"
+                 materialDesign:HintAssist.Hint="{Binding InputLabel}"
                  materialDesign:HintAssist.HintOpacity="0.2"
-                 Width="160" Height="30"
-                 x:Name="TextBoxInput"
+                 Width="160" Height="40"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 Text="{Binding Input}"
-                 Margin="10" />
+                 Margin="5"
+                 Padding="0">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding OkCommand}"
+                            CommandParameter="{Binding Text, ElementName=TextBoxInput}" 
+                            Key="Enter"/>
+                <KeyBinding Command="{Binding CancelCommand}" Key="Escape"/>
+            </TextBox.InputBindings>
+        </TextBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Margin="10" Padding="0" Width="60" Height="25">
+            <Button Command="{Binding OkCommand}" CommandParameter="{Binding Text, ElementName=TextBoxInput}">
                 <TextBlock Text="OK" />
             </Button>
-            <Button Margin="10" Padding="0" Width="60" Height="25">
+            <Button Command="{Binding CancelCommand}">
                 <TextBlock Text="Cancel" />
             </Button>
         </StackPanel>

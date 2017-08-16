@@ -15,6 +15,12 @@
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="Margin" Value="10" />
             </Style>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Width" Value="130"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
             <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
                 <Setter Property="HorizontalAlignment" Value="Left" />
                 <Setter Property="Margin" Value="10,5,0,0" />
@@ -101,6 +107,23 @@
                     <TextBlock Text="Auto Reply" Foreground="Black" />
                 </StackPanel>
             </GroupBox.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Enable" Grid.Row="0" Grid.Column="0" />
+                <ToggleButton Grid.Column="1" Grid.Row="0" />
+                <TextBlock Text="Mailbox" Grid.Row="1" Grid.Column="0" />
+                <TextBox Grid.Column="1" Grid.Row="1" />
+                <TextBlock Text="Folder" Grid.Row="2" Grid.Column="0" />
+                <TextBox Grid.Column="1" Grid.Row="2" />
+            </Grid>
         </GroupBox>
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using HelpdeskKit.AD;
 using HelpdeskKit.Commands;
 using System;
+using HelpdeskKit.Dialogs;
 
 namespace HelpdeskKit.ViewModels
 {
@@ -59,7 +60,7 @@ namespace HelpdeskKit.ViewModels
             }
         }
 
-        public RelayCommand UnlockCommand => new RelayCommand(UnlockMethod, (o)=>(o != null));
+        public RelayCommand UnlockCommand => new RelayCommand(UnlockMethod, o=>(o != null));
         private void UnlockMethod(object param)
         {
             if (param == null) throw new ArgumentNullException();
@@ -68,6 +69,29 @@ namespace HelpdeskKit.ViewModels
             OnPropertyChanged(nameof(CurrentUser));
         }
 
+        public RelayCommand ChangePasswordCommand => new RelayCommand(o=>ShowInputDialog("Password", false, ContinueChangePasswordMethod), o=>(o != null));
+        //public RelayCommand ChangeBatchCommand => new RelayCommand((o) => ShowInputDialog("Batch", ContinueChangePasswordMethod), (o) => (o != null));
+
+        private void ContinueChangePasswordMethod(object context)
+        {
+            if (context.GetType() != typeof(InputDialogViewModel)) throw new InvalidOperationException();
+            var vm = (InputDialogViewModel)context;
+            if (vm.Result)
+            {
+                if(string.IsNullOrEmpty(vm.Input)) throw  new InvalidProgramException();
+                _ad.ChangePassword(CurrentUser, vm.Input);
+                OnPropertyChanged(nameof(CurrentUser));
+            }
+        }
+        private void ShowInputDialog(string inputLabel, bool allowEmptyInput, Action<object> continueWith)
+        {
+            var view = new InputDialog();
+            var vm = new InputDialogViewModel(inputLabel, allowEmptyInput, continueWith);
+            view.DataContext = vm;
+            vm.RequestCloseEventArgs += CloseDialog;
+            DialogContent = view;
+            ShowDialog = true;
+        }
 
     }
 }

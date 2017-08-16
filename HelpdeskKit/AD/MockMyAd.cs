@@ -67,7 +67,7 @@ namespace HelpdeskKit.AD
 
         public void ChangePassword(User user, string pwd)
         {
-            user.ExpireDate = DateTime.Today.AddDays(45);
+            user.ExpireDate = user.ExpireDate.AddDays(45);
         }
 
         public void ChangeBatch(User user, string batch)

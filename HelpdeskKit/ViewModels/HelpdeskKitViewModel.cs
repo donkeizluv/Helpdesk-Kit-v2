@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel;
-using System.DirectoryServices;
 using System.Runtime.CompilerServices;
-using HelpdeskKit.AD;
 using HelpdeskKit.Annotations;
 using HelpdeskKit.Dialogs;
 using HelpdeskKit.Views;
@@ -14,7 +12,6 @@ namespace HelpdeskKit.ViewModels
     {
         public HelpdeskKitViewModel()
         {
-            _ad = new MockMyAd();
             Init();
             InitItems();
             ShowLoginDialog();
@@ -30,14 +27,19 @@ namespace HelpdeskKit.ViewModels
             ShowDialog = true;
         }
 
+
         private void CloseDialog(object sender, RequestCloseEventArgs e)
         {
             ShowDialog = false;
             //should i?
             //or should i cache all the dialogs?
+            //since dialog gets opened not that often, maybe cache isnt needed
             var dialog = (ICloseable)sender;
             dialog.RequestCloseEventArgs -= CloseDialog;
         }
+
+        internal string Username;
+        internal string Password;
 
         private void ContinuedLogin(object context)
         {
@@ -45,6 +47,8 @@ namespace HelpdeskKit.ViewModels
             var vm = (LoginDialogViewModel) context;
             //Ad should be instanciate otherwise should not have escaped login dialog
             _ad = vm.Ad ?? throw new InvalidProgramException();
+            Username = vm.Username;
+            Password = vm.Password;
         }
 
         private bool _showDialog;
@@ -73,6 +77,7 @@ namespace HelpdeskKit.ViewModels
 
         private void Init()
         {
+            //default search option
             SearchByAd = true;
         }
 

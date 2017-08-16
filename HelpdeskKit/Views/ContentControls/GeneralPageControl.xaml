@@ -50,7 +50,6 @@
                      Height="40"
                      materialDesign:HintAssist.Hint="Search"
                      materialDesign:HintAssist.HintOpacity="0.2"
-                     Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding SearchAdCommand}"
@@ -217,7 +216,7 @@
                          Foreground="{Binding Foreground, ElementName=LockIcon}"
                          BorderBrush="{Binding Foreground, ElementName=LockIcon}" />
                 <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="True"
-                         Text="{Binding CurrentUser.ExpireDate}"
+                         Text="{Binding CurrentUser.ExpireDate, StringFormat=dd/MM/yyyy}"
                          Foreground="{Binding Foreground, ElementName=ClockExpireIcon}"
                          BorderBrush="{Binding Foreground, ElementName=ClockExpireIcon}" />
                 <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="True"
@@ -258,14 +257,14 @@
                 </Label>
                 <Label>
                     <StackPanel Orientation="Horizontal">
-                        <Button Command="{Binding ChangePasswordCommand}">
+                        <Button Command="{Binding ChangePasswordCommand}" CommandParameter="{Binding CurrentUser}">
                             Password
                         </Button>
                     </StackPanel>
                 </Label>
                 <Label>
                     <StackPanel Orientation="Horizontal">
-                        <Button Command="{Binding ChangeBatchCommand}">
+                        <Button Command="{Binding ChangeBatchCommand}"  CommandParameter="{Binding CurrentUser}">
                             Batch
                         </Button>
                     </StackPanel>
@@ -273,7 +272,7 @@
 
                 <Label>
                     <StackPanel Orientation="Horizontal">
-                        <Button Command="{Binding DisableCommand}">
+                        <Button Command="{Binding DisableCommand}"  CommandParameter="{Binding CurrentUser}">
                             Disable
                         </Button>
                     </StackPanel>

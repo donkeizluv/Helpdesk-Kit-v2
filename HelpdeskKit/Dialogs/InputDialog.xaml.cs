@@ -10,14 +10,9 @@ namespace HelpdeskKit.Dialogs
     /// </summary>
     public partial class InputDialog : UserControl
     {
-        public RelayCommand CancelCommand;
-        public InputDialog(string inputLabel)
+        public InputDialog()
         {
             InitializeComponent();
-            InputLabel = inputLabel;
-            DataContext = this;
         }
-        public string InputLabel { get; set; }
-        public string Input { get; set; }
     }
 }
