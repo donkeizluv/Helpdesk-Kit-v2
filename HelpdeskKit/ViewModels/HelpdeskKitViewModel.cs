@@ -2,10 +2,14 @@
 using System.Runtime.CompilerServices;
 using HelpdeskKit.Annotations;
 using HelpdeskKit.Views;
-using HelpdeskKit.Views;
 using HelpdeskKit.Views.ContentControls;
 using System;
 using HelpdeskKit.Commands;
+<<<<<<< HEAD
+=======
+using System.Windows.Threading;
+using MaterialDesignThemes.Wpf;
+>>>>>>> bfb60353cab7ddbd0c000a5918e8a40d24881d09
 
 namespace HelpdeskKit.ViewModels
 {
@@ -16,6 +20,8 @@ namespace HelpdeskKit.ViewModels
             Init();
             InitItems();
             ShowLoginDialog();
+            ShowSnackBar = false;
+            InnitSnackBarTimer();
         }
 
         private bool _searchFieldFocus;
@@ -62,11 +68,65 @@ namespace HelpdeskKit.ViewModels
         private void ContinuedLogin(object context)
         {
             if (context.GetType() != typeof(LoginDialogViewModel)) throw new InvalidOperationException();
-            var vm = (LoginDialogViewModel) context;
+            var vm = (LoginDialogViewModel)context;
             //Ad should be instanciate otherwise should not have escaped login dialog
             _ad = vm.Ad ?? throw new InvalidProgramException();
             Username = vm.Username;
             Password = vm.Password;
+        }
+
+        private DispatcherTimer _snackbarTimer;
+        //public SnackbarMessageQueue MainMessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(1.5));
+        private void InnitSnackBarTimer()
+        {
+            _snackbarTimer = new DispatcherTimer();
+            _snackbarTimer.Interval = TimeSpan.FromSeconds(1.7);
+            _snackbarTimer.Tick += ((o, e) =>
+            {
+                ShowSnackBar = false;
+                SnackBarMessage = string.Empty;
+                _snackbarTimer.Stop();
+            });
+        }
+        public void DisplaySnackBar(string content)
+        {
+            //MainMessageQueue.Enqueue(content);
+            if (ShowSnackBar) //in case already shown, update mess then reset timer
+            {
+                SnackBarMessage = content;
+                if (_snackbarTimer.IsEnabled) //reset timer
+                {
+                    _snackbarTimer.Stop();
+                    _snackbarTimer.Start();
+                }
+                return;
+            }
+            SnackBarMessage = content;
+            ShowSnackBar = true;
+            _snackbarTimer.Start();
+        }
+
+        public RelayCommand CloseSnackBar => new RelayCommand(new Action<object>(o => { ShowSnackBar = false; }));
+        private bool _showSnackbar;
+        public bool ShowSnackBar
+        {
+            get => _showSnackbar;
+            set
+            {
+                _showSnackbar = value;
+                OnPropertyChanged(nameof(ShowSnackBar));
+            }
+        }
+
+        private string _snackBarMess;
+        public string SnackBarMessage
+        {
+            get => _snackBarMess;
+            set
+            {
+                _snackBarMess = value;
+                OnPropertyChanged(nameof(SnackBarMessage));
+            }
         }
 
         private bool _showDialog;

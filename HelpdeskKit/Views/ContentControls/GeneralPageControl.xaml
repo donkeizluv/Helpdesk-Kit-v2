@@ -39,7 +39,7 @@
                     <Setter Property="Foreground" Value="{Binding ElementName=TextBoxSearchUser, Path=BorderBrush}" />
                     <Style.Triggers>
                         <!--sync textbox borderbrush when it got active -->
-                        <DataTrigger Binding="{Binding IsSelectionActive, ElementName=NameTextBox}" Value="True">
+                        <DataTrigger Binding="{Binding IsSelectionActive, ElementName=TextBoxSearchUser}" Value="True">
                             <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush}" />
                         </DataTrigger>
                     </Style.Triggers>
