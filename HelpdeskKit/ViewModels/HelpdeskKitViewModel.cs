@@ -5,6 +5,7 @@ using HelpdeskKit.Views;
 using HelpdeskKit.Views;
 using HelpdeskKit.Views.ContentControls;
 using System;
+using HelpdeskKit.Commands;
 
 namespace HelpdeskKit.ViewModels
 {
@@ -16,6 +17,23 @@ namespace HelpdeskKit.ViewModels
             InitItems();
             ShowLoginDialog();
         }
+
+        private bool _searchFieldFocus;
+        public bool SearchFieldFocus
+        {
+            get => _searchFieldFocus;
+            set
+            {
+                _searchFieldFocus = value;
+                OnPropertyChanged(nameof(SearchFieldFocus));
+            }
+        }
+
+        public RelayCommand FocusSearchTextbox => new RelayCommand((o) =>
+        {
+            SearchFieldFocus = true;
+        });
+
 
         private void ShowLoginDialog()
         {
@@ -64,6 +82,7 @@ namespace HelpdeskKit.ViewModels
         }
 
         private object _dialogContent;
+
         public object DialogContent
         {
             get => _dialogContent;

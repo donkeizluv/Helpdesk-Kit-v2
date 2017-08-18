@@ -48,11 +48,12 @@
             <TextBox x:Name="TextBoxSearchUser"
                      Width="120"
                      Height="40"
-                     materialDesign:HintAssist.Hint="Search"
+                     materialDesign:HintAssist.Hint="Search(Ctr+E)"
                      materialDesign:HintAssist.HintOpacity="0.2"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     v:FocusExtension.IsFocused="{Binding SearchFieldFocus, Mode=TwoWay}">
                 <TextBox.InputBindings>
-                    <KeyBinding Command="{Binding SearchAdCommand}"
+                        <KeyBinding Command="{Binding SearchAdCommand}"
                                 CommandParameter="{Binding Text, ElementName=TextBoxSearchUser}"
                                 Key="Enter" />
                 </TextBox.InputBindings>
@@ -251,21 +252,21 @@
                 <Label>
                     <StackPanel Orientation="Horizontal">
                         <Button Command="{Binding UnlockCommand}" CommandParameter="{Binding CurrentUser}">
-                            Unlock
+                            <AccessText Text="_Unlock"/>
                         </Button>
                     </StackPanel>
                 </Label>
                 <Label>
                     <StackPanel Orientation="Horizontal">
                         <Button Command="{Binding ChangePasswordCommand}" CommandParameter="{Binding CurrentUser}">
-                            Password
+                            <AccessText Text="_Password"/>
                         </Button>
                     </StackPanel>
                 </Label>
                 <Label>
                     <StackPanel Orientation="Horizontal">
                         <Button Command="{Binding ChangeBatchCommand}"  CommandParameter="{Binding CurrentUser}">
-                            Batch
+                            <AccessText Text="_Batch"/>
                         </Button>
                     </StackPanel>
                 </Label>
@@ -273,12 +274,10 @@
                 <Label>
                     <StackPanel Orientation="Horizontal">
                         <Button Command="{Binding DisableCommand}"  CommandParameter="{Binding CurrentUser}">
-                            Disable
+                            <AccessText Text="_Disable"/>
                         </Button>
                     </StackPanel>
                 </Label>
-
-
             </StackPanel>
         </materialDesign:Card>
     </Grid>

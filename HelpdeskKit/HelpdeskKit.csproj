@@ -69,6 +69,7 @@
     <Compile Include="AD\IActiveDirectory.cs" />
     <Compile Include="AD\MockMyAd.cs" />
     <Compile Include="AD\MyAd.cs" />
+    <Compile Include="Views\FocusExtention.cs" />
     <Compile Include="Views\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>

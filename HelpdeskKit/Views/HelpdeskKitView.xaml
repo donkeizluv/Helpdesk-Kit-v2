@@ -15,7 +15,11 @@
         TextElement.FontSize="13.5"
         Title="Helpdesk Kit"
         WindowStartupLocation="CenterScreen"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" 
+        TextOptions.TextFormattingMode="Display">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding FocusSearchTextbox}" Key="E" Modifiers="Control"/>
+    </Window.InputBindings>
     <Window.Resources>
         <local:InverseBooleanConverter x:Key="InverseBool" />
     </Window.Resources>
