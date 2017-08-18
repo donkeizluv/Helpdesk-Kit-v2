@@ -5,11 +5,9 @@ using HelpdeskKit.Views;
 using HelpdeskKit.Views.ContentControls;
 using System;
 using HelpdeskKit.Commands;
-<<<<<<< HEAD
-=======
 using System.Windows.Threading;
 using MaterialDesignThemes.Wpf;
->>>>>>> bfb60353cab7ddbd0c000a5918e8a40d24881d09
+
 
 namespace HelpdeskKit.ViewModels
 {
